@@ -41,7 +41,13 @@ sh build/build.sh
 
 ## 그림
 
-표지·장면 그림 지시문은 `docs/image_prompts.md`에 있습니다. 표지를 받으면 `thumbs/cover.webp`로 넣습니다(og:image가 이 주소를 가리킵니다).
+Genspark로 만든 16비트 RPG 픽셀아트 14장(요청문: `docs/genspark/`)을 반영했습니다.
+
+- `images/cover_main.webp` — 표지 (대체 표지 `cover_alt_book`·`cover_alt_map`은 보관만)
+- `images/scene_*.webp` — 오늘의 교실, 3D 지도, 1~6교시, 대결, 쪽지시험, 마무리 (11장, 모두 지연 로딩)
+- `thumbs/cover.webp`(1200×678, 공유 미리보기) · `thumbs/cover_480.webp`(목차 썸네일)
+
+생성 그림에 일정한 픽셀 격자가 없어(1~8배 격자 모두 오차가 큼) 정수배 확대 대신 원래 크기 그대로 WebP(품질 88)로 저장하고, 화면에서는 부드럽게 표시합니다.
 
 ## 저작권
 

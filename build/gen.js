@@ -5,6 +5,7 @@ eval(fs.readFileSync(path.join(H,"content.js"),"utf8"));
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const byId={}; CHARTS.forEach(c=>byId[c.id]=c);
 const pairsOf=id=>EDGES.filter(e=>e[0]===id||e[1]===id).map(e=>[e[0]===id?e[1]:e[0],e[2]]);
+const SCENE={"1": "1교시 칠판의 종 모양 히스토그램과 상자그림. 초파리가 오른쪽 끝의 튀는 점을 돋보기로 본다.", "2": "2교시 산점도. 초파리가 멀리 떨어진 점 하나를 핀셋으로 놓자 추세선이 기운다.", "3": "3교시 2×2 혼동행렬과 겹친 두 종 모양 분포, 박사 선생님이 기준선을 옮긴다.", "4": "4교시 두 오차 곡선. 주판봇은 복잡도 다이얼을 끝까지 돌리고, 초파리는 U자가 다시 오르는 지점에서 정지 표지판을 든다.", "5": "5교시 바닥의 색 구슬을 수강생들이 네 그릇에 나눠 담는다.", "6": "6교시 긴 물결선과 가운데 매끄러운 선, 열두 장마다 눈송이가 있는 달력을 모아가 가리킨다."};
 const STAGE=["탐색","확인·비교","모델링·평가","설명"], DT=["연속값","범주·개수","시간 순서","모델 점수·예측"];
 
 /* ---------- 실험 패널 (교시별) ---------- */
@@ -63,6 +64,7 @@ function lesson(G){
 <h2 id="h-g${G.n}"><span class="hex">${G.n}</span>${G.n}교시 · ${esc(G.ko)}</h2>
 <div class="tags"><span class="tag">질문: ${esc(G.q)}</span><span class="tag">차트 ${cs.length}장</span><span class="tag">방법: 그림 ${cs.length}장과 실험 1개</span></div>
 <p class="where"><b>지도 위치</b> ${esc(G.prev)} → <b>${G.n}교시 ${esc(G.ko)}</b> → ${esc(G.next)}</p>
+<figure class="scene"><img src="images/scene_g${G.n}.webp" width="1248" height="832" loading="lazy" decoding="async" alt="${esc(SCENE[G.n])}"><figcaption>${G.n}교시 장면</figcaption></figure>
 <div data-dlg="g${G.n}"></div>
 <div class="pair2">
  <div class="whybox" id="why-${G.n}"><h3>왜 이 그림들을 쓰나</h3><ol><li><b>문제 상황</b> ${esc(G.why.problem)}</li><li><b>앞 방법의 한계</b> ${esc(G.why.limit)}</li><li><b>해법</b> ${esc(G.why.fix)}</li></ol><p class="easy"><b>쉽게 말하면</b> ${esc(G.why.easy)}</p></div>
