@@ -1,0 +1,333 @@
+{
+ "version": "1.0",
+ "made": "2026-11-24",
+ "via": "rehang-2026-11-24",
+ "domains": [
+  "data",
+  "stats"
+ ],
+ "note": "분야 뼈대 주제에 다시 걸기(ai-lab-retrofit 15장). links는 자동 후보이며 틀린 줄은 지우면 된다. 빌드 스크립트가 있는 저장소는 빌드 끝에 rehang.apply_overlay()가 이 파일을 적용한다.",
+ "topics": {
+  "lab:topic/bias-variance": {
+   "ko": "편향-분산 균형",
+   "en": "Bias–variance trade-off",
+   "domain": [
+    "ai",
+    "ml"
+   ],
+   "level": 1
+  },
+  "lab:topic/chart-selection": {
+   "ko": "차트 고르기",
+   "en": "Choosing charts",
+   "domain": [
+    "data"
+   ],
+   "level": 1
+  },
+  "lab:topic/cluster-analysis": {
+   "ko": "군집분석",
+   "en": "Cluster analysis",
+   "domain": [
+    "stats"
+   ],
+   "level": 3
+  },
+  "lab:topic/confusion-matrix": {
+   "ko": "혼동 행렬",
+   "en": "Confusion matrix",
+   "domain": [
+    "ai",
+    "ml"
+   ],
+   "level": 2
+  },
+  "lab:topic/contingency-table": {
+   "ko": "분할표",
+   "en": "Contingency table",
+   "domain": [
+    "stats"
+   ],
+   "level": 2
+  },
+  "lab:topic/correlation": {
+   "ko": "상관",
+   "en": "Correlation",
+   "domain": [
+    "stats"
+   ],
+   "level": 1
+  },
+  "lab:topic/generalization": {
+   "ko": "일반화·과적합",
+   "en": "Generalization and overfitting",
+   "domain": [
+    "ai",
+    "ml"
+   ],
+   "level": 1
+  },
+  "lab:topic/interpretability": {
+   "ko": "설명 가능성·해석",
+   "en": "Interpretability",
+   "domain": [
+    "ai",
+    "crime"
+   ],
+   "level": 4
+  },
+  "lab:topic/precision-recall": {
+   "ko": "정밀도·재현율",
+   "en": "Precision and recall",
+   "domain": [
+    "ai",
+    "ml"
+   ],
+   "level": 2
+  },
+  "lab:topic/principal-components": {
+   "ko": "주성분",
+   "en": "Principal components",
+   "domain": [
+    "stats"
+   ],
+   "level": 3
+  },
+  "lab:topic/residual-diagnostics": {
+   "ko": "잔차 진단",
+   "en": "Residual diagnostics",
+   "domain": [
+    "stats"
+   ],
+   "level": 2
+  },
+  "lab:topic/roc-auc": {
+   "ko": "ROC·AUC",
+   "en": "ROC and AUC",
+   "domain": [
+    "ai",
+    "ml"
+   ],
+   "level": 2
+  },
+  "lab:topic/statistical-graphics": {
+   "ko": "통계 그래프",
+   "en": "Statistical graphics",
+   "domain": [
+    "stats"
+   ],
+   "level": 1
+  },
+  "lab:topic/trend-seasonality": {
+   "ko": "추세·계절",
+   "en": "Trend and seasonality",
+   "domain": [
+    "stats"
+   ],
+   "level": 3
+  },
+  "lab:topic/tsne-umap": {
+   "ko": "t-SNE·UMAP",
+   "en": "t-SNE and UMAP",
+   "domain": [
+    "ai",
+    "ml"
+   ],
+   "level": 2
+  },
+  "lab:topic/type-i-ii-errors": {
+   "ko": "오류 두 종류",
+   "en": "Type I and type II errors",
+   "domain": [
+    "stats"
+   ],
+   "level": 2
+  }
+ },
+ "links": {
+  "lab:concept/chart-distribution-view": {
+   "topic": "lab:topic/chart-selection",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "1교시 분포 보기"
+  },
+  "lab:concept/chart-relationship-view": {
+   "topic": "lab:topic/chart-selection",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "2교시 관계 보기"
+  },
+  "lab:concept/chart-time-series-view": {
+   "topic": "lab:topic/chart-selection",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "6교시 시계열"
+  },
+  "lab:method/bias-variance-plot": {
+   "topic": "lab:topic/bias-variance",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "편향-분산 트레이드오프"
+  },
+  "lab:method/box-violin-plot": {
+   "topic": "lab:topic/statistical-graphics",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "상자그림·바이올린 플롯"
+  },
+  "lab:method/confusion-matrix-plot": {
+   "topic": "lab:topic/confusion-matrix",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "혼동행렬"
+  },
+  "lab:method/contingency-table-mosaic": {
+   "topic": "lab:topic/contingency-table",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "교차분석표·모자이크 플롯"
+  },
+  "lab:method/correlation-heatmap": {
+   "topic": "lab:topic/correlation",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "상관 히트맵"
+  },
+  "lab:method/dendrogram": {
+   "topic": "lab:topic/cluster-analysis",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "덴드로그램"
+  },
+  "lab:method/ecdf-plot": {
+   "topic": "lab:topic/statistical-graphics",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "누적분포 그림"
+  },
+  "lab:method/elbow-curve": {
+   "topic": "lab:topic/cluster-analysis",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "엘보 곡선"
+  },
+  "lab:method/feature-importance-plot": {
+   "topic": "lab:topic/interpretability",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "특성 중요도"
+  },
+  "lab:method/histogram": {
+   "topic": "lab:topic/statistical-graphics",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "히스토그램·밀도곡선"
+  },
+  "lab:method/learning-curve": {
+   "topic": "lab:topic/generalization",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "학습 곡선"
+  },
+  "lab:method/moving-average-line": {
+   "topic": "lab:topic/trend-seasonality",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "시계열 선 그래프·이동평균"
+  },
+  "lab:method/pair-plot": {
+   "topic": "lab:topic/correlation",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "산점도 행렬"
+  },
+  "lab:method/pca-biplot": {
+   "topic": "lab:topic/principal-components",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "PCA 바이플롯"
+  },
+  "lab:method/pdp-ice-plot": {
+   "topic": "lab:topic/interpretability",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "부분의존 그림·ICE"
+  },
+  "lab:method/precision-recall-curve": {
+   "topic": "lab:topic/precision-recall",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "정밀도-재현율 곡선"
+  },
+  "lab:method/qq-plot": {
+   "topic": "lab:topic/statistical-graphics",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "QQ 플롯"
+  },
+  "lab:method/residual-plot": {
+   "topic": "lab:topic/residual-diagnostics",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "잔차 플롯"
+  },
+  "lab:method/roc-curve": {
+   "topic": "lab:topic/roc-auc",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "ROC 곡선"
+  },
+  "lab:method/scatter-plot": {
+   "topic": "lab:topic/correlation",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "산점도"
+  },
+  "lab:method/scree-plot": {
+   "topic": "lab:topic/principal-components",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "스크리 그림·누적 설명분산"
+  },
+  "lab:method/seasonal-decomposition": {
+   "topic": "lab:topic/trend-seasonality",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "시계열 분해"
+  },
+  "lab:method/shap-summary-plot": {
+   "topic": "lab:topic/interpretability",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "SHAP 요약 그림"
+  },
+  "lab:method/silhouette-plot": {
+   "topic": "lab:topic/cluster-analysis",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "실루엣 그림"
+  },
+  "lab:method/tsne-umap-map": {
+   "topic": "lab:topic/tsne-umap",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "t-SNE·UMAP 지도"
+  },
+  "lab:method/type-i-ii-error-plot": {
+   "topic": "lab:topic/type-i-ii-errors",
+   "score": 3,
+   "why": "사람이 고름",
+   "ko": "1종·2종 오류 그림"
+  }
+ },
+ "retag": {
+  "from": [
+   "stats",
+   "ai"
+  ],
+  "to": [
+   "data",
+   "stats"
+  ]
+ }
+}
