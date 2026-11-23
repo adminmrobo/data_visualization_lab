@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>시각화 차트 도감 — 차트 32장이 답하는 질문</title>
+<meta name="description" content="데이터 시각화 특집. 분포·관계·모델 평가·진단과 해석·줄이기와 묶기·시계열, 6교시 32장의 차트를 3D 관계 지도와 연구실 수업으로 배웁니다.">
+<meta property="og:title" content="시각화 차트 도감">
+<meta property="og:description" content="차트 32장, 6교시, 3D 관계 지도. 그림마다 어떤 질문에 답하는지 배우는 연구실 수업.">
+<meta property="og:image" content="https://adminmrobo.github.io/data_visualization_lab/thumbs/cover.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* 흰 배경 연구실 수업. 교시 색 = 범주 팔레트 1~6번(고정 순서), 글자는 늘 잉크색 */
+:root{
+  --bg:#ffffff; --panel:#f7f8fa; --panel2:#eef1f4; --rule:#dde2e8; --text:#1b1f24; --muted:#5b6470;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100; --s5:#e87ba4; --s6:#008300; --s7:#6250d6; --s8:#e34948;
+  --g1:var(--s1); --g2:var(--s2); --g3:var(--s3); --g4:var(--s4); --g5:var(--s5); --g6:var(--s6);
+  --ok:#008300; --bad:#c43a39; --warn:#b77a00; --info:#2a78d6;
+  --c-doc:#7c3aed; --c-asst:#db2777; --c-fly:#dc2626; --c-robo:#0891b2; --c-sia:#64748b; --c-moa:#c2410c; --c-x:#6d28d9;
+  --font:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:96px}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.8 var(--font);word-break:keep-all;-webkit-text-size-adjust:100%}
+a{color:var(--info)}
+:focus-visible{outline:2px solid var(--s7);outline-offset:2px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 18px}
+h1{font-size:clamp(30px,5vw,50px);line-height:1.25;margin:8px 0 12px;text-wrap:balance}
+h2{font-size:clamp(23px,3vw,31px);line-height:1.35;margin:0 0 10px;text-wrap:balance}
+h3{font-size:18px;margin:20px 0 8px}
+p{margin:0 0 12px}
+.muted{color:var(--muted)}
+
+nav.top{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--rule)}
+nav.top .row{display:flex;align-items:center;gap:10px;max-width:1120px;margin:0 auto;padding:8px 18px}
+nav.top .logo{font-weight:700;white-space:nowrap;text-decoration:none;color:var(--text)}
+nav.top .links{display:flex;gap:2px;overflow-x:auto;flex:1;min-width:0;scrollbar-width:none}
+nav.top .links a{white-space:nowrap;text-decoration:none;color:var(--muted);font-size:14px;padding:4px 8px;border-radius:6px}
+nav.top .links a:hover{color:var(--text);background:var(--panel2)}
+
+header.hero{padding:36px 0 24px}
+.eyebrow{font-size:13px;letter-spacing:.06em;color:var(--muted);font-weight:600}
+.byline{color:var(--muted);font-size:14px}
+.lead{max-width:70ch}
+.castrow{display:flex;gap:6px;flex-wrap:wrap;margin:14px 0 4px}
+.castrow img{width:56px;height:56px;image-rendering:pixelated;border-radius:10px;background:var(--panel);border:1px solid var(--rule)}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:18px 0}
+.kpi{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:10px 12px}
+.kpi b{display:block;font-size:26px;font-variant-numeric:tabular-nums;line-height:1.3}
+.kpi span{font-size:13px;color:var(--muted)}
+@media(max-width:860px){.kpis{grid-template-columns:repeat(2,1fr)}}
+.three{background:var(--panel);border:1px solid var(--rule);border-left:4px solid var(--s3);border-radius:10px;padding:16px 20px;margin:16px 0}
+.three ol{margin:6px 0 0;padding-left:22px}
+.three li{margin:4px 0}
+.three .note{font-size:14px;color:var(--muted);margin-top:8px}
+details.abbr{margin-top:6px;font-size:14px}
+details.abbr summary{cursor:pointer;color:var(--muted)}
+details.abbr dl{display:grid;grid-template-columns:max-content 1fr;gap:2px 12px;margin:8px 0 0}
+details.abbr dt{font-weight:700}
+
+section.sec{padding:88px 0 40px;border-top:1px solid var(--rule)}
+.hex{display:inline-grid;place-items:center;width:40px;height:44px;background:var(--gc,var(--s7));color:#fff;font-weight:700;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);margin-right:10px;vertical-align:middle;font-size:18px;text-shadow:0 1px 1px rgba(0,0,0,.35)}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 14px}
+.tag{font-size:12.5px;border:1px solid var(--rule);border-radius:999px;padding:1px 10px;color:var(--muted);background:#fff}
+.where{font-size:14.5px;color:var(--muted);background:var(--panel);border-radius:8px;padding:6px 12px;display:inline-block}
+.where b{color:var(--text)}
+
+/* 말풍선 */
+.say{display:flex;gap:12px;align-items:flex-start;margin:10px 0;max-width:780px}
+.say img.who{width:64px;height:64px;flex:none;image-rendering:pixelated;border-radius:10px;background:var(--panel);border:2px solid var(--cc,var(--rule))}
+.say>div{background:#fff;border:1px solid var(--cc,var(--rule));border-radius:4px 12px 12px 12px;padding:8px 14px;min-width:0;box-shadow:0 1px 0 rgba(0,0,0,.03)}
+.say .name{display:block;font-size:13px;color:var(--cc);font-weight:700}
+.say p{margin:0}
+.say[data-who="doc"]{--cc:var(--c-doc)} .say[data-who="asst"]{--cc:var(--c-asst)} .say[data-who="fly"]{--cc:var(--c-fly)}
+.say[data-who="robo"]{--cc:var(--c-robo)} .say[data-who="sia"]{--cc:var(--c-sia)} .say[data-who="moa"]{--cc:var(--c-moa)} .say[data-who^="x"]{--cc:var(--c-x)}
+.say.right{flex-direction:row-reverse;margin-left:auto}
+.say.right>div{border-radius:12px 4px 12px 12px}
+.say.sm img.who{width:44px;height:44px}
+.say.sm>div{font-size:15px;padding:6px 12px}
+@media(max-width:520px){.say img.who{width:52px;height:52px}}
+
+/* 등장인물 */
+.castgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.castc{background:var(--panel);border:1px solid var(--rule);border-top:3px solid var(--cc);border-radius:10px;padding:12px;display:flex;gap:10px;align-items:flex-start}
+.castc img{width:56px;height:56px;image-rendering:pixelated;flex:none}
+.castc b{color:var(--cc)}
+.castc .role{display:inline-block;font-size:12px;border:1px solid var(--cc);color:var(--cc);border-radius:999px;padding:0 8px;margin-left:6px;font-weight:700}
+.castc p{margin:2px 0 0;font-size:14px;color:var(--muted);line-height:1.6}
+.castgroup{font-size:14px;font-weight:700;color:var(--muted);margin:16px 0 6px}
+@media(max-width:860px){.castgrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.castgrid{grid-template-columns:1fr}}
+
+/* 3D 지도 */
+.stagebox{border:1px solid var(--rule);border-radius:12px;overflow:hidden;background:#fbfcfd}
+.toolbar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:10px 12px;border-bottom:1px solid var(--rule);background:#fff}
+.toolbar .sp{flex:1}
+.chip{font:inherit;font-size:13.5px;border:1px solid var(--rule);background:#fff;color:var(--text);border-radius:999px;padding:4px 11px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;line-height:1.4;text-decoration:none}
+.chip[aria-pressed="true"]{background:var(--text);color:#fff;border-color:var(--text)}
+.chip:hover{border-color:var(--s7)}
+.chip small{color:var(--muted);font-size:12px}
+.chip[aria-pressed="true"] small{color:#ddd}
+.dot{width:10px;height:10px;border-radius:50%;display:inline-block;flex:none}
+#stage{position:relative;height:min(70vh,640px);min-height:440px;touch-action:pan-y;cursor:grab;user-select:none;-webkit-user-select:none;overflow:hidden}
+#stage canvas{display:block;width:100%;height:100%}
+#stage.dragging{cursor:grabbing}
+.lbl{position:absolute;left:0;top:0;white-space:nowrap;font:600 12px/1.25 var(--font);color:var(--text);background:rgba(255,255,255,.9);border:1px solid var(--rule);border-left:3px solid var(--gc);border-radius:6px;padding:2px 7px;cursor:pointer;will-change:transform}
+.lbl.sel{background:var(--text);color:#fff;border-color:var(--text)}
+.lbl.dim{opacity:.25}
+.axlbl{position:absolute;left:0;top:0;pointer-events:none;font:700 12.5px/1.2 var(--font);color:var(--muted);white-space:nowrap;background:rgba(255,255,255,.75);padding:1px 6px;border-radius:4px}
+.axlbl.lane{color:var(--text);border-left:4px solid var(--gc)}
+.elbl{position:absolute;left:0;top:0;pointer-events:none;font:12px/1.2 var(--font);color:var(--text);background:#fffbe8;border:1px solid #e8d48a;border-radius:4px;padding:1px 6px;white-space:nowrap;display:none}
+.infobar{padding:12px 14px;border-top:1px solid var(--rule);background:#fff;min-height:64px;font-size:15px}
+.infobar b{font-size:16px}
+.infobar .acts{margin-top:6px;display:flex;gap:6px;flex-wrap:wrap}
+.axisnote{font-size:14px;color:var(--muted);margin:10px 0 0}
+.axisnote b{color:var(--text)}
+#nogl{display:none;padding:20px}
+.mapidx{border-top:1px solid var(--rule);padding:10px 14px;background:#fff}
+.mapidx summary{cursor:pointer;font-weight:700;color:var(--muted);font-size:14px}
+#mapidx>div{display:flex;flex-wrap:wrap;gap:5px;align-items:center;margin-top:8px}
+#mapidx b{font-size:13px;border-left:4px solid var(--gc);padding-left:6px;margin-right:4px;min-width:52px}
+
+/* 큰 그림 */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}
+.step{background:var(--panel);border:1px solid var(--rule);border-top:4px solid var(--gc);border-radius:10px;padding:12px 14px;text-decoration:none;color:inherit;font-size:15px}
+.step b{display:block;font-size:15px;margin-bottom:2px}
+.step small{display:block;color:var(--muted);font-size:12.5px;line-height:1.55;margin-top:6px}
+.step:hover{border-color:var(--gc)}
+@media(max-width:860px){.steps{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.steps{grid-template-columns:1fr}}
+
+/* 왜 · 수식 상자 */
+.pair2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0}
+@media(max-width:860px){.pair2{grid-template-columns:1fr}}
+.whybox,.mathbox{border-radius:12px;padding:16px 20px;border:1px solid var(--rule)}
+.whybox{background:#f4f8fe;border-color:#cddff5}
+.mathbox{background:#fdf5f8;border-color:#f1cfdd}
+.whybox h3,.mathbox h3{margin:0 0 8px;font-size:16px}
+.whybox ol{padding-left:20px;margin:0}
+.whybox li{margin:6px 0}
+.whybox li b,.easy b,.school b,.calc b{display:inline-block;margin-right:6px}
+.easy{margin:10px 0 0;padding-top:8px;border-top:1px dashed #cddff5}
+.sym{width:100%;border-collapse:collapse;font-size:14.5px;margin:8px 0}
+.sym th,.sym td{border:1px solid #efd5e0;padding:6px 10px;text-align:left;vertical-align:top;background:#fff}
+.sym th{white-space:nowrap;font-family:var(--mono);font-size:13.5px;font-weight:600}
+@media(max-width:520px){.sym th{white-space:normal}}
+.calc{background:#fff;border-radius:8px;padding:10px 12px;border:1px solid #efd5e0;font-variant-numeric:tabular-nums}
+.note{font-size:14px;color:var(--muted)}
+
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+.pair>div{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:12px 16px;font-size:15px}
+.pair .tl,.pair .tr{font-size:12.5px;font-weight:700;margin-bottom:4px;color:var(--muted)}
+@media(max-width:760px){.pair{grid-template-columns:1fr}}
+
+/* 실험 패널 */
+.panel{background:#fff;border:1px solid var(--rule);border-radius:12px;padding:16px;margin:16px 0;box-shadow:0 1px 3px rgba(16,24,40,.04)}
+.ptitle{font-size:15px;font-weight:700;margin-bottom:8px}
+.ctrl{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;margin:8px 0}
+.group{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.glabel{font-size:13px;color:var(--muted);margin-right:2px}
+.bt{font:inherit;font-size:14px;background:#fff;color:var(--text);border:1px solid var(--rule);border-radius:7px;padding:4px 11px;cursor:pointer;line-height:1.5}
+.bt:hover{border-color:var(--s7)}
+.bt[aria-pressed="true"]{background:var(--text);color:#fff;border-color:var(--text);font-weight:700}
+input[type=range]{accent-color:var(--s7);width:170px}
+.val{font-variant-numeric:tabular-nums;font-weight:700;min-width:3em;display:inline-block}
+.tri,.duo,.quad{display:grid;gap:12px;margin-top:10px}
+.tri{grid-template-columns:repeat(3,1fr)} .duo{grid-template-columns:repeat(2,1fr)} .quad{grid-template-columns:repeat(2,1fr)}
+@media(max-width:860px){.tri{grid-template-columns:1fr 1fr}}
+@media(max-width:620px){.tri,.duo,.quad{grid-template-columns:1fr}}
+.panel figure{margin:0}
+.panel canvas{display:block;width:100%;height:220px;background:#fff;border:1px solid var(--panel2);border-radius:8px}
+.panel figcaption{font-size:13px;color:var(--muted);margin-top:4px}
+.minis{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}
+.mini{background:var(--panel);border-radius:8px;padding:8px 10px}
+.mini span{display:block;font-size:12.5px;color:var(--muted)}
+.mini b{font-size:20px;font-variant-numeric:tabular-nums}
+@media(max-width:620px){.minis{grid-template-columns:repeat(2,1fr)}}
+.insight p{margin:8px 0 0;padding:8px 12px;border-radius:8px;background:var(--panel);border-left:3px solid var(--muted);font-size:15px}
+.insight p.g{border-left-color:var(--ok)} .insight p.r{border-left-color:var(--bad)} .insight p.a{border-left-color:var(--warn)}
+.cmbox{height:220px;display:grid;place-items:center;border:1px solid var(--panel2);border-radius:8px}
+table.cmt{border-collapse:separate;border-spacing:4px;font-variant-numeric:tabular-nums;font-size:14px}
+.cmt th{font-size:12.5px;color:var(--muted);font-weight:600;padding:2px 6px}
+.cmt td{width:104px;height:64px;text-align:center;border-radius:8px;font-size:13px;line-height:1.3;border:1px solid var(--rule)}
+.cmt td b{display:block;font-size:19px}
+.cmt td.tp,.cmt td.tn{background:#e6f4ea} .cmt td.fp{background:#fde8e8} .cmt td.fn{background:#fff1dc}
+@media(max-width:420px){.cmt td{width:86px;height:58px}}
+
+.lim{border-left:3px solid var(--bad);padding:8px 14px;margin:14px 0;font-size:15px;background:#fff7f7;border-radius:0 8px 8px 0}
+details.fold{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:10px 14px;margin:14px 0}
+details.fold summary{cursor:pointer;font-weight:700;color:var(--muted)}
+details.fold pre{background:#fff;border:1px solid var(--rule);border-radius:8px;padding:10px 12px;overflow-x:auto;font:13px/1.6 var(--mono);margin:8px 0 0}
+details.fold .cm{font-size:14px;color:var(--muted);margin:4px 0 0}
+
+/* 카드 */
+.cardsh{margin-top:32px}
+.cardsh small{font-weight:400;color:var(--muted);font-size:13px;margin-left:6px}
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;align-items:start}
+@media(max-width:760px){.cards{grid-template-columns:1fr}}
+details.card{background:#fff;border:1px solid var(--rule);border-top:4px solid var(--gc);border-radius:12px;overflow:hidden}
+details.card[open]{grid-column:1/-1;box-shadow:0 2px 10px rgba(16,24,40,.07)}
+details.card>summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:150px 1fr;grid-template-rows:auto auto auto;column-gap:14px;padding:12px;align-items:start}
+details.card>summary::-webkit-details-marker{display:none}
+canvas.mini{grid-row:1/4;width:150px;height:96px;border:1px solid var(--panel2);border-radius:8px;background:#fff}
+.ct b{font-size:16px;display:block;line-height:1.4}
+.ct small{color:var(--muted);font-size:12.5px}
+.cq{font-size:14px;margin-top:2px}
+.ctags{display:flex;gap:4px;flex-wrap:wrap;margin-top:4px}
+.ctags span{font-size:11.5px;color:var(--muted);background:var(--panel);border-radius:4px;padding:0 6px}
+.open{position:absolute;opacity:0;pointer-events:none}
+details.card[open]>summary canvas.mini{width:300px;height:190px}
+details.card[open]>summary{grid-template-columns:300px 1fr}
+@media(max-width:520px){details.card>summary{grid-template-columns:110px 1fr}canvas.mini{width:110px;height:72px}details.card[open]>summary{grid-template-columns:1fr}details.card[open]>summary canvas.mini{width:100%;height:190px;grid-row:auto;margin-bottom:8px}}
+.cbody{padding:0 16px 16px}
+.cbody dl{margin:0;display:grid;grid-template-columns:max-content 1fr;gap:6px 14px}
+.cbody dt{font-weight:700;font-size:14px;color:var(--muted)}
+.cbody dd{margin:0}
+@media(max-width:620px){.cbody dl{grid-template-columns:1fr}.cbody dd{margin-bottom:6px}}
+.mis{margin:12px 0;background:#faf7ff;border:1px solid #e4dbfb;border-radius:10px;padding:8px 12px}
+.mis .mt{font-size:13px;color:var(--c-x)}
+.pairs{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:10px 0}
+.pairs>b{font-size:14px;color:var(--muted);margin-right:4px}
+.prompt{background:#f3faf6;border:1px solid #cfe9da;border-radius:10px;padding:10px 14px;margin:12px 0}
+.prompt b{font-size:14px}
+.prompt p{margin:4px 0 8px;font-size:15px}
+.maplink{font-size:14px}
+
+.quiz{background:#f4f8fe;border:1px solid #cddff5;border-radius:10px;padding:12px 16px;margin:20px 0}
+.quiz .q{font-weight:700;margin-bottom:8px}
+.quiz .opts{display:flex;flex-wrap:wrap;gap:6px}
+.quiz .fb{margin-top:8px;font-size:15px;min-height:1.6em}
+.quiz .fb.ok{color:var(--ok)} .quiz .fb.no{color:var(--bad)}
+.quiz button.ok{background:#e6f4ea;border-color:var(--ok);color:var(--text)}
+.quiz button.no{background:#fde8e8;border-color:var(--bad);color:var(--text)}
+
+/* 대결 */
+.duel{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:stretch;margin:14px 0}
+.duel .side{background:var(--panel);border:1px solid var(--rule);border-radius:12px;padding:14px}
+.duel .side h3{margin:0 0 6px;font-size:16px}
+.duel .vs{display:grid;place-items:center;font-weight:700;color:var(--warn);font-size:22px}
+@media(max-width:760px){.duel{grid-template-columns:1fr}.duel .vs{padding:2px}}
+.metrics{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin-top:8px;font-size:14px}
+.metrics div{background:#fff;border:1px solid var(--rule);border-radius:6px;padding:4px 8px}
+.metrics b{font-variant-numeric:tabular-nums}
+.verdict{background:#faf7ff;border:1px solid var(--c-doc);border-radius:12px;padding:14px 18px;margin:12px 0}
+.aicorner{background:#fffaf0;border:1px solid #f0d9a8;border-radius:12px;padding:14px 18px;margin:16px 0}
+.aicorner h3{margin:0 0 6px;font-size:16px}
+.aicorner blockquote{margin:8px 0;padding:8px 12px;background:#fff;border-left:3px solid var(--warn);border-radius:0 6px 6px 0}
+
+/* 쪽지시험 */
+.exam{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:860px){.exam{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.exam{grid-template-columns:1fr}}
+.eq{background:#fff;border:1px solid var(--rule);border-radius:12px;padding:12px}
+.eq canvas{width:100%;height:150px;display:block;border:1px solid var(--panel2);border-radius:8px}
+.eq .q{font-weight:700;font-size:15px;margin:8px 0 6px}
+.eq .opts{display:flex;flex-direction:column;gap:5px}
+.eq .bt{text-align:left;font-size:14px}
+.eq .fb{font-size:14px;min-height:1.4em;margin-top:6px}
+.score{font-size:18px;font-weight:700;margin:14px 0;font-variant-numeric:tabular-nums}
+
+.reflist li{margin:6px 0;font-size:15px}
+footer{border-top:1px solid var(--rule);padding:28px 0 44px;color:var(--muted);font-size:14px;margin-top:40px}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media(max-width:520px){section.sec{padding:64px 0 32px}}
+</style>
+</head>
+<body>
+<nav class="top" aria-label="페이지 차례"><div class="row">
+ <a class="logo" href="#top">시각화 차트 도감</a>
+ <div class="links"><a href="#map">3D 지도</a><!--@@NAV@@--><a href="#duel">대결</a><a href="#exam">쪽지시험</a></div>
+</div></nav>
+
+<div class="wrap" id="top">
+<header class="hero" id="hero">
+ <div class="eyebrow">데이터 시각화 특집 · 연구실 수업</div>
+ <h1>시각화 차트 도감</h1>
+ <p class="lead">히스토그램부터 SHAP, 실루엣, 자기상관까지 데이터 분석에서 자주 만나는 차트 32장을 6교시로 나눠 배웁니다. 그림 모양을 외우기보다, 그림마다 <b>어떤 질문에 답하는지</b>와 <b>어떻게 잘못 읽기 쉬운지</b>를 먼저 봅니다.</p>
+ <div class="byline">글 · 안상선 ((주)M-Robo 대표) · 자매편 <a href="https://adminmrobo.github.io/probability_distribution_dictionary/">확률분포 딕셔너리</a></div>
+ <div class="castrow" id="castrow" aria-hidden="true"></div>
+ <div class="kpis">
+  <div class="kpi"><b>32</b><span>차트 카드</span></div>
+  <div class="kpi"><b>6</b><span>교시 (질문의 종류)</span></div>
+  <div class="kpi"><b>32</b><span>함께 보는 짝 관계</span></div>
+  <div class="kpi"><b>3축</b><span>단계 · 데이터 · 질문 지도</span></div>
+ </div>
+ <div class="three" id="three">
+  <b>처음 오신 분께 — 이 페이지를 3줄로</b>
+  <ol>
+   <li><b>무엇을</b>: 차트 32장이 각각 어떤 질문에 답하는지, 어떻게 읽고 어떻게 잘못 읽기 쉬운지 배웁니다.</li>
+   <li><b>왜 중요한가</b>: 같은 데이터도 그림을 잘못 고르거나 잘못 읽으면 반대 결론이 나옵니다.</li>
+   <li><b>회사에서는</b>: 보고서 그래프를 고르고, AI가 그려 준 그래프를 검토할 때 바로 씁니다.</li>
+  </ol>
+  <div class="note">수식이나 코드를 몰라도 됩니다. 코드는 모두 접어 두었고, 카드마다 생성 AI에게 그대로 부탁할 수 있는 문장을 붙였습니다.</div>
+  <details class="abbr"><summary>이 페이지의 영어 약어 풀이</summary><dl>
+   <dt>ECDF</dt><dd>경험적 누적분포함수 — 데이터로 그린 누적 비율 계단</dd>
+   <dt>QQ</dt><dd>분위수-분위수(Quantile-Quantile) — 두 분포의 같은 % 지점끼리 비교</dd>
+   <dt>KS</dt><dd>콜모고로프-스미르노프 — 두 누적분포의 최대 거리</dd>
+   <dt>ROC · AUC</dt><dd>수신자 조작 특성 곡선 · 그 곡선 아래 넓이</dd>
+   <dt>PR</dt><dd>정밀도(Precision)-재현율(Recall)</dd>
+   <dt>TP · FP · FN · TN</dt><dd>참 양성 · 거짓 양성 · 거짓 음성 · 참 음성</dd>
+   <dt>TPR · FPR</dt><dd>참 양성 비율(재현율) · 거짓 양성 비율(헛경보율)</dd>
+   <dt>SHAP</dt><dd>섀플리 값으로 예측을 변수별로 나누는 설명 방법</dd>
+   <dt>PDP · ICE</dt><dd>부분의존 그림 · 개별 조건부 기대 곡선</dd>
+   <dt>PCA</dt><dd>주성분 분석 — 정보를 많이 담는 새 축 찾기</dd>
+   <dt>t-SNE · UMAP</dt><dd>이웃 관계를 지키며 2차원으로 펼치는 방법</dd>
+   <dt>WCSS</dt><dd>군집 안 제곱합 — 무리 안 점들이 중심에서 떨어진 정도</dd>
+   <dt>ACF · PACF</dt><dd>자기상관 · 편자기상관</dd>
+  </dl></details>
+ </div>
+ <div data-dlg="hero"></div>
+</header>
+
+<section class="sec" id="cast" aria-labelledby="h-cast">
+ <h2 id="h-cast">오늘의 교실</h2>
+ <p class="lead">이번 특집에서는 연구실이 교실이 됩니다. 박사가 선생님, 주판봇과 초파리가 조교, 나머지 식구 여섯이 수강생입니다.</p>
+ <div id="castgrid"></div>
+</section>
+
+<section class="sec" id="map" aria-labelledby="h-map">
+ <h2 id="h-map">3D 관계 지도 — 차트 32장은 어디에 있나</h2>
+ <p class="lead">가로는 <b>분석 단계</b>(탐색 → 확인·비교 → 모델링·평가 → 설명), 높이는 <b>다루는 데이터</b>(연속값 · 범주·개수 · 시간 순서 · 모델 점수·예측), 앞뒤 줄은 <b>교시</b>(답하는 질문)입니다. 선은 함께 보면 좋은 짝입니다.</p>
+ <div data-dlg="map"></div>
+ <div class="stagebox">
+  <div class="toolbar" id="lanechips" role="group" aria-label="교시 고르기"></div>
+  <div class="toolbar"><button class="chip" id="v-front">정면</button><button class="chip" id="v-top">위에서</button><button class="chip" id="v-side">옆에서</button><button class="chip" id="v-spin" aria-pressed="false">천천히 돌리기</button><span class="sp"></span><button class="chip" id="v-reset">선택 풀기</button></div>
+  <div id="stage" aria-label="차트 3D 관계 지도. 이름표를 누르면 짝 관계가 보입니다."></div>
+  <div id="nogl">이 브라우저에서는 3D 지도를 그릴 수 없습니다. 아래 교시별 카드에서 같은 내용을 볼 수 있습니다.</div>
+  <div class="infobar" id="infobar" aria-live="polite">이름표를 누르면 그 차트와 짝 관계가 강조됩니다.</div>
+  <details class="mapidx"><summary>차트 이름으로 고르기 (32장 목록)</summary><div id="mapidx"></div></details>
+ </div>
+ <p class="axisnote"><b>조작</b> 끌어서 돌리기, 휠(두 손가락)로 확대. 이름표가 겹쳐 숨은 차트는 그림 판을 직접 누르거나 아래 목록에서 고르세요. <b>읽는 법</b> 같은 높이·같은 가로 위치에 모인 차트는 같은 종류의 데이터를 같은 단계에서 다룹니다. 3교시·4교시 차트가 오른쪽 위(모델 점수, 평가·설명)에 몰려 있는 것은 그 그림들이 데이터가 아니라 <b>모델이 낸 숫자</b>를 그리기 때문입니다.</p>
+</section>
+
+<section class="sec" id="big" aria-labelledby="h-big">
+ <h2 id="h-big">큰 그림 — 6교시 순서</h2>
+ <p class="lead">교시는 앞 교시의 한계가 다음 교시의 이유가 되도록 이어집니다. 변수 하나(분포) → 둘(관계) → 모델이 낸 답(평가) → 모델 속(진단·해석) → 변수 수십 개(줄이기·묶기) → 시간(시계열).</p>
+ <div class="steps"><!--@@STEPS@@--></div>
+</section>
+
+<!--@@LESSONS@@-->
+
+<section class="sec" id="duel" aria-labelledby="h-duel">
+ <h2 id="h-duel"><span class="hex" style="--gc:var(--s8)">VS</span>대결 — 정확도 99% 사기 탐지 모델, 도입할까?</h2>
+ <div data-dlg="duel0"></div>
+ <p class="lead">거래 10,000건 중 사기는 100건(1%)입니다. 모델 A는 모든 거래를 ‘정상’이라고 합니다. 모델 B는 3교시 실험의 점수 모델(양성 점수 평균 2, AUC 약 0.92)입니다. 사기 한 건을 놓치면 100만 원 손실, 헛경보 한 건을 확인하는 데 1만 원이 든다고 합시다(숫자는 교육용 예시입니다).</p>
+ <div class="duel">
+  <div class="side"><h3>주판봇 팀 — 모델 A (정확도 우선)</h3><div id="d-a"></div></div>
+  <div class="vs">VS</div>
+  <div class="side"><h3>초파리 팀 — 모델 B (혼동행렬 우선)</h3><div class="ctrl"><label class="group"><span class="glabel">B의 기준선</span><input type="range" id="d-t" min="0" max="3.5" step="0.1" value="1.5"><span class="val" id="d-tv">1.5</span></label></div><div id="d-b"></div></div>
+ </div>
+ <div class="verdict" id="d-v" aria-live="polite"></div>
+ <div class="aicorner" id="ai-corner">
+  <h3>AI 판단 코너 — 이 보고서, 어디가 이상할까요?</h3>
+  <p>생성 AI에게 두 모델을 비교해 달라고 했더니 이런 문장이 돌아왔습니다.</p>
+  <blockquote>“모델 A는 정확도 99.0%로 모델 B(93.1%)보다 6%p 높습니다. 따라서 모델 A의 도입을 권장합니다.”</blockquote>
+  <p>숫자 자체는 맞습니다. 그런데 결론을 믿기 전에 확인할 것이 있습니다. 직접 생각해 본 뒤 단추를 눌러 보세요.</p>
+  <button class="bt" id="ai-btn" aria-expanded="false">확인할 것 보기</button>
+  <ol id="ai-ans" hidden><li><b>양성 비율</b> — 사기가 1%뿐이면 ‘전부 정상’도 정확도 99%가 나옵니다. 기준이 되는 무작위 모델의 정확도부터 물어야 합니다.</li><li><b>혼동행렬</b> — A의 재현율은 0%입니다. 사기를 한 건도 잡지 못합니다.</li><li><b>비용</b> — 두 실수의 비용이 다르면 정확도가 아니라 비용으로 비교해야 합니다. 위 예시에서는 B가 훨씬 쌉니다.</li></ol>
+ </div>
+</section>
+
+<section class="sec" id="exam" aria-labelledby="h-exam">
+ <h2 id="h-exam">박사 선생님의 쪽지시험</h2>
+ <p class="lead">그림을 보고 이 그림이 답하는 질문이나 읽는 법을 고르세요. 점수는 저장되지 않습니다. 틀린 문제는 해당 카드로 가는 연결이 나타납니다.</p>
+ <div data-dlg="exam0"></div>
+ <div class="exam" id="examgrid"></div>
+ <div class="score" id="examscore" aria-live="polite">0 / 6</div>
+</section>
+
+<section class="sec" id="refs" aria-labelledby="h-refs">
+ <h2 id="h-refs">참고 문헌</h2>
+ <p class="lead">카드 속 몇몇 주장의 근거입니다. 나머지 설명과 숫자 예시는 이 페이지에서 직접 계산했습니다.</p>
+ <ol class="reflist">
+  <li id="ref-anscombe">Anscombe, F. J. (1973). Graphs in Statistical Analysis. <i>The American Statistician</i>, 27(1), 17–21. — 상관계수가 같아도 산점도는 전혀 다를 수 있다(2교시 실험).</li>
+  <li id="ref-rousseeuw">Rousseeuw, P. J. (1987). Silhouettes: A graphical aid to the interpretation and validation of cluster analysis. <i>Journal of Computational and Applied Mathematics</i>, 20, 53–65. — 실루엣 점수(5교시).</li>
+  <li id="ref-niculescu">Niculescu-Mizil, A., &amp; Caruana, R. (2005). Predicting good probabilities with supervised learning. <i>Proceedings of ICML 2005</i>. — 보정 곡선(3교시).</li>
+  <li id="ref-vandermaaten">van der Maaten, L., &amp; Hinton, G. (2008). Visualizing Data using t-SNE. <i>Journal of Machine Learning Research</i>, 9, 2579–2605. — t-SNE(5교시).</li>
+  <li id="ref-saito">Saito, T., &amp; Rehmsmeier, M. (2015). The Precision-Recall Plot Is More Informative than the ROC Plot When Evaluating Binary Classifiers on Imbalanced Datasets. <i>PLOS ONE</i>, 10(3), e0118432. — 양성이 드물 때 PR 곡선(3교시).</li>
+  <li id="ref-wattenberg">Wattenberg, M., Viégas, F., &amp; Johnson, I. (2016). How to Use t-SNE Effectively. <i>Distill</i>. — t-SNE 지도의 무리 크기·거리 해석 주의(5교시).</li>
+  <li id="ref-lundberg">Lundberg, S. M., &amp; Lee, S.-I. (2017). A Unified Approach to Interpreting Model Predictions. <i>Advances in Neural Information Processing Systems 30</i>. — SHAP(4교시).</li>
+ </ol>
+</section>
+
+<section class="sec" id="outro" aria-labelledby="h-outro">
+ <h2 id="h-outro">수업을 마치며</h2>
+ <div data-dlg="outro"></div>
+ <div class="pair"><div><div class="tl">다음에 볼 것</div><a href="https://adminmrobo.github.io/probability_distribution_dictionary/dictionary.html">확률분포 딕셔너리</a>에서 히스토그램·QQ 플롯이 비교하는 분포 모양을, <a href="https://adminmrobo.github.io/probability_distribution_dictionary/tables.html#s4">분포표 읽기 연구실</a>에서 1종·2종 오류와 검정력을 더 깊이 볼 수 있습니다.</div><div><div class="tr">이 페이지에서 단순하게 본 것</div>실험 패널의 데이터는 모두 정해진 난수로 만든 교육용 예시입니다. 실제 업무 데이터에서는 결측값, 단위 차이, 표본 크기에 따라 그림이 달라질 수 있습니다.</div></div>
+</section>
+</div>
+
+<footer><div class="wrap">
+ <p>글 · 안상선 (<a href="https://adminmrobo.github.io/who_am_i/who_am_i.html">저자 소개</a>) · (주)M-Robo 대표</p>
+ <p>캐릭터 그림: <a href="https://github.com/adminmrobo/fruitfly-lab-expressions">연구실 캐릭터 팩</a>. 캐릭터 이름·설정·그림은 저작권자 안상선의 허락 없이 사용할 수 없습니다. 차트 그림은 모두 이 페이지가 정해진 난수 데이터로 직접 그린 예시입니다.</p>
+</div></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+/*@@SPRITES@@*/
+</script>
+<script>
+/*@@CONTENT@@*/
+</script>
+<script>
+/*@@APP@@*/
+</script>
+</body>
+</html>

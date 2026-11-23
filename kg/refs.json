@@ -1,0 +1,285 @@
+[
+ {
+  "id": "anscombe1973graphs",
+  "type": "article-journal",
+  "title": "Graphs in Statistical Analysis",
+  "author": [
+   {
+    "family": "Anscombe",
+    "given": "F. J."
+   }
+  ],
+  "issued": {
+   "date-parts": [
+    [
+     1973
+    ]
+   ]
+  },
+  "container-title": "The American Statistician",
+  "lab": {
+   "work": "lab:work/anscombe1973graphs",
+   "role": "background",
+   "supports": [
+    "lab:claim/same-r-different-scatter"
+   ],
+   "locs": [],
+   "verified": {
+    "title": true,
+    "author": true,
+    "year": true,
+    "container": true,
+    "pages": false,
+    "doi": false
+   },
+   "checkedBy": "작성자 지식으로 서지 작성, 외부 대조 안 함",
+   "checkedSource": "page"
+  }
+ },
+ {
+  "id": "rousseeuw1987silhouettes",
+  "type": "article-journal",
+  "title": "Silhouettes: A graphical aid to the interpretation and validation of cluster analysis",
+  "author": [
+   {
+    "family": "Rousseeuw",
+    "given": "Peter J."
+   }
+  ],
+  "issued": {
+   "date-parts": [
+    [
+     1987
+    ]
+   ]
+  },
+  "container-title": "Journal of Computational and Applied Mathematics",
+  "lab": {
+   "work": "lab:work/rousseeuw1987silhouettes",
+   "role": "background",
+   "supports": [
+    "lab:claim/silhouette-definition"
+   ],
+   "locs": [],
+   "verified": {
+    "title": true,
+    "author": true,
+    "year": true,
+    "container": true,
+    "pages": false,
+    "doi": false
+   },
+   "checkedBy": "작성자 지식으로 서지 작성, 외부 대조 안 함",
+   "checkedSource": "page"
+  }
+ },
+ {
+  "id": "niculescu-mizil2005predicting",
+  "type": "paper-conference",
+  "title": "Predicting good probabilities with supervised learning",
+  "author": [
+   {
+    "family": "Niculescu-Mizil",
+    "given": "Alexandru"
+   },
+   {
+    "family": "Caruana",
+    "given": "Rich"
+   }
+  ],
+  "issued": {
+   "date-parts": [
+    [
+     2005
+    ]
+   ]
+  },
+  "container-title": "Proceedings of the 22nd International Conference on Machine Learning",
+  "lab": {
+   "work": "lab:work/niculescu-mizil2005predicting",
+   "role": "background",
+   "supports": [
+    "lab:claim/auc-not-calibration"
+   ],
+   "locs": [],
+   "verified": {
+    "title": true,
+    "author": true,
+    "year": true,
+    "container": true,
+    "pages": false,
+    "doi": false
+   },
+   "checkedBy": "작성자 지식으로 서지 작성, 외부 대조 안 함",
+   "checkedSource": "page"
+  }
+ },
+ {
+  "id": "vandermaaten2008visualizing",
+  "type": "article-journal",
+  "title": "Visualizing Data using t-SNE",
+  "author": [
+   {
+    "family": "van der Maaten",
+    "given": "Laurens"
+   },
+   {
+    "family": "Hinton",
+    "given": "Geoffrey"
+   }
+  ],
+  "issued": {
+   "date-parts": [
+    [
+     2008
+    ]
+   ]
+  },
+  "container-title": "Journal of Machine Learning Research",
+  "lab": {
+   "work": "lab:work/vandermaaten2008visualizing",
+   "role": "background",
+   "supports": [
+    "lab:claim/tsne-preserves-neighbors"
+   ],
+   "locs": [],
+   "verified": {
+    "title": true,
+    "author": true,
+    "year": true,
+    "container": true,
+    "pages": false,
+    "doi": false
+   },
+   "checkedBy": "작성자 지식으로 서지 작성, 외부 대조 안 함",
+   "checkedSource": "page"
+  }
+ },
+ {
+  "id": "saito2015precision",
+  "type": "article-journal",
+  "title": "The Precision-Recall Plot Is More Informative than the ROC Plot When Evaluating Binary Classifiers on Imbalanced Datasets",
+  "author": [
+   {
+    "family": "Saito",
+    "given": "Takaya"
+   },
+   {
+    "family": "Rehmsmeier",
+    "given": "Marc"
+   }
+  ],
+  "issued": {
+   "date-parts": [
+    [
+     2015
+    ]
+   ]
+  },
+  "container-title": "PLOS ONE",
+  "lab": {
+   "work": "lab:work/saito2015precision",
+   "role": "background",
+   "supports": [
+    "lab:claim/pr-informative-imbalanced"
+   ],
+   "locs": [],
+   "verified": {
+    "title": true,
+    "author": true,
+    "year": true,
+    "container": true,
+    "pages": false,
+    "doi": false
+   },
+   "checkedBy": "작성자 지식으로 서지 작성, 외부 대조 안 함",
+   "checkedSource": "page"
+  }
+ },
+ {
+  "id": "wattenberg2016how",
+  "type": "article-journal",
+  "title": "How to Use t-SNE Effectively",
+  "author": [
+   {
+    "family": "Wattenberg",
+    "given": "Martin"
+   },
+   {
+    "family": "Viégas",
+    "given": "Fernanda"
+   },
+   {
+    "family": "Johnson",
+    "given": "Ian"
+   }
+  ],
+  "issued": {
+   "date-parts": [
+    [
+     2016
+    ]
+   ]
+  },
+  "container-title": "Distill",
+  "lab": {
+   "work": "lab:work/wattenberg2016how",
+   "role": "background",
+   "supports": [
+    "lab:claim/tsne-distances-unreliable"
+   ],
+   "locs": [],
+   "verified": {
+    "title": true,
+    "author": true,
+    "year": true,
+    "container": true,
+    "pages": false,
+    "doi": false
+   },
+   "checkedBy": "작성자 지식으로 서지 작성, 외부 대조 안 함",
+   "checkedSource": "page"
+  }
+ },
+ {
+  "id": "lundberg2017unified",
+  "type": "paper-conference",
+  "title": "A Unified Approach to Interpreting Model Predictions",
+  "author": [
+   {
+    "family": "Lundberg",
+    "given": "Scott M."
+   },
+   {
+    "family": "Lee",
+    "given": "Su-In"
+   }
+  ],
+  "issued": {
+   "date-parts": [
+    [
+     2017
+    ]
+   ]
+  },
+  "container-title": "Advances in Neural Information Processing Systems 30",
+  "lab": {
+   "work": "lab:work/lundberg2017unified",
+   "role": "background",
+   "supports": [
+    "lab:claim/shap-additive-attribution"
+   ],
+   "locs": [],
+   "verified": {
+    "title": true,
+    "author": true,
+    "year": true,
+    "container": true,
+    "pages": false,
+    "doi": false
+   },
+   "checkedBy": "작성자 지식으로 서지 작성, 외부 대조 안 함",
+   "checkedSource": "page"
+  }
+ }
+]
