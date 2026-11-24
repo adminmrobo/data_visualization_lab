@@ -85,10 +85,24 @@ ${EXP[G.n]}
 </section>`;
 }
 
+
+const firstSent=t=>{const i=t.indexOf(". ");return i>0?t.slice(0,i+1):t;};
+function acard(c){return `<article class="acard" id="a-${c.id}" style="--gc:var(--g${c.g})">
+<div class="ah"><b>${esc(c.ko)}</b><small>${esc(c.en)}</small></div>
+<canvas class="atl" data-chart="${c.id}" role="img" aria-label="${esc(c.ko)} 예시 그림"></canvas>
+<p class="aq">${esc(c.q)}</p>
+<p class="row"><b>읽는 법</b>${esc(firstSent(c.read))}</p>
+<p class="row mis"><b>흔한 오독</b><s>“${esc(c.mis[1])}”</s> → ${esc(firstSent(c.mis[3]))}</p>
+<p class="row"><b>회사에서</b>${esc(c.work)}</p>
+<div class="ctags"><span>${STAGE[c.st]}</span><span>${DT[c.dt]}</span></div>
+<div class="alinks"><a href="#c-${c.id}" data-open="${c.id}">${c.g}교시 카드 자세히 ↓</a><a href="#map" data-map="${c.id}">3D 지도 위치</a></div>
+</article>`;}
+const ATLAS=`<section id="atlas" aria-label="차트 32장 한눈에 보기">`+GROUPS.map(G=>`<div class="agroup" id="ag${G.n}" style="--gc:var(--g${G.n})"><h2><span class="hex">${G.n}</span>${esc(G.ko)} <span class="gq">${esc(G.q)} · ${CHARTS.filter(c=>c.g===G.n).length}장</span></h2><div class="agrid">${CHARTS.filter(c=>c.g===G.n).map(acard).join("")}</div></div>`).join("")+`</section>`;
+
 const tpl=fs.readFileSync(path.join(H,"page.src.html"),"utf8");
 const steps=GROUPS.map(G=>`<a class="step" href="#g${G.n}" style="--gc:var(--g${G.n})"><b>${G.n}교시 · ${esc(G.ko)}</b>${esc(G.q)}<small>${CHARTS.filter(c=>c.g===G.n).map(c=>esc(c.ko)).join(" · ")}</small></a>`).join("");
 const navLinks=GROUPS.map(G=>`<a href="#g${G.n}">${G.n} ${esc(G.ko)}</a>`).join("");
-const out=tpl.replace("<!--@@STEPS@@-->",steps).replace("<!--@@NAV@@-->",navLinks).replace("<!--@@LESSONS@@-->",GROUPS.map(lesson).join("\n"))
+const out=tpl.replace("<!--@@STEPS@@-->",steps).replace("<!--@@ATLAS@@-->",()=>ATLAS).replace("<!--@@NAV@@-->",navLinks).replace("<!--@@LESSONS@@-->",GROUPS.map(lesson).join("\n"))
  .replace("/*@@SPRITES@@*/",()=>fs.readFileSync(path.join(H,"sprites.js"),"utf8"))
  .replace("/*@@CONTENT@@*/",()=>fs.readFileSync(path.join(H,"content.js"),"utf8"))
  .replace("/*@@APP@@*/",()=>fs.readFileSync(path.join(H,"app.js"),"utf8"));

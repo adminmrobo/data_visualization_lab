@@ -269,6 +269,51 @@ details.card[open]>summary{grid-template-columns:300px 1fr}
 .scene{margin:14px 0 18px;max-width:760px}
 .scene img{display:block;width:100%;height:auto;aspect-ratio:3/2;border-radius:12px;border:1px solid var(--rule);background:var(--panel)}
 .scene figcaption{font-size:13px;color:var(--muted);margin-top:4px}
+.jump{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0 4px}
+@media(max-width:760px){.jump{grid-template-columns:1fr}}
+.b3d{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:12px;background:#fff8e1;border:1px solid #f0d58a;text-decoration:none;color:var(--text)}
+.b3d.alt{background:#f4f8fe;border-color:#cddff5}
+.b3d i{font-style:normal;font-weight:700;background:var(--s4);color:#1b1f24;border-radius:8px;padding:6px 9px;font-size:14px;flex:none}
+.b3d.alt i{background:var(--s1);color:#fff}
+.b3d span{flex:1;min-width:0}.b3d b{display:block;font-size:15px}.b3d small{display:block;color:var(--muted);font-size:12.5px;line-height:1.5}
+.b3d em{font-style:normal;font-weight:700;font-size:13.5px;white-space:nowrap}
+.intro{display:grid;grid-template-columns:1.25fr 1fr;gap:14px;margin:6px 0 10px}
+@media(max-width:860px){.intro{grid-template-columns:1fr}}
+.intro .panel{margin:0}
+.intro h2{font-size:17px;margin:0 0 8px}
+.legendl{margin:0;padding-left:18px;font-size:14.5px;line-height:1.7}
+.legendl li{margin:3px 0}
+.glegend{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.glegend a{display:inline-flex;align-items:center;gap:6px;font-size:13px;text-decoration:none;color:var(--text);border:1px solid var(--rule);border-radius:999px;padding:2px 10px}
+.agroup{padding:36px 0 6px}
+.agroup h2{font-size:22px;margin:0;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.agroup h2 .hex{width:34px;height:38px;font-size:16px;margin:0}
+.agroup .gq{font-size:14.5px;color:var(--muted);font-weight:400}
+.agrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
+@media(max-width:960px){.agrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.agrid{grid-template-columns:1fr}}
+.acard{background:#fff;border:1px solid var(--rule);border-top:4px solid var(--gc);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;scroll-margin-top:90px}
+.acard .ah{display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.acard .ah b{font-size:16px;line-height:1.35}
+.acard .ah small{color:var(--muted);font-size:11.5px;text-align:right}
+.acard canvas{width:100%;height:170px;display:block;margin:8px 0;border:1px solid var(--panel2);border-radius:8px;background:#fff}
+.acard .aq{font-size:15px;font-weight:600;margin:0 0 6px;line-height:1.55}
+.acard .row{font-size:13.5px;line-height:1.6;margin:3px 0;color:var(--text)}
+.acard .row>b{display:inline-block;font-size:11.5px;color:var(--muted);min-width:44px;margin-right:4px}
+.acard .row.mis{background:#faf7ff;border-radius:6px;padding:4px 8px}
+.acard .row.mis s{color:var(--c-x);text-decoration:none}
+.acard .ctags{margin-top:6px}
+.acard .alinks{margin-top:auto;padding-top:10px;display:flex;gap:6px;flex-wrap:wrap}
+.acard .alinks a{font-size:13px;border:1px solid var(--rule);border-radius:7px;padding:3px 9px;text-decoration:none;color:var(--info)}
+.summary{margin:40px 0 10px}
+.summary h2{font-size:22px}
+.tbl{overflow-x:auto;border:1px solid var(--rule);border-radius:12px}
+.tbl table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:560px}
+.tbl th,.tbl td{border-bottom:1px solid var(--rule);padding:9px 12px;text-align:left;vertical-align:top}
+.tbl th{background:var(--panel);font-size:13.5px}
+.tbl tr:last-child td{border-bottom:0}
+.tbl td:first-child{font-weight:600;white-space:nowrap}
+@media(max-width:620px){.tbl td:first-child{white-space:normal}.tbl table{min-width:0;font-size:13.5px}.tbl th,.tbl td{padding:7px 8px}}
 footer{border-top:1px solid var(--rule);padding:28px 0 44px;color:var(--muted);font-size:14px;margin-top:40px}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 @media(max-width:520px){section.sec{padding:64px 0 32px}}
@@ -286,24 +331,23 @@ footer{border-top:1px solid var(--rule);padding:28px 0 44px;color:var(--muted);f
 <body>
 <nav class="top" aria-label="페이지 차례"><div class="row">
  <a class="logo" href="#top">시각화 차트 도감</a>
- <div class="links"><a href="#map">3D 지도</a><a href="#g1">1 분포 보기</a><a href="#g2">2 관계 보기</a><a href="#g3">3 모델 평가</a><a href="#g4">4 진단과 해석</a><a href="#g5">5 줄이기·묶기</a><a href="#g6">6 시계열</a><a href="#duel">대결</a><a href="#exam">쪽지시험</a></div>
+ <div class="links"><a href="#atlas">한눈에</a><a href="#map">3D 지도</a><a href="#g1">1 분포 보기</a><a href="#g2">2 관계 보기</a><a href="#g3">3 모델 평가</a><a href="#g4">4 진단과 해석</a><a href="#g5">5 줄이기·묶기</a><a href="#g6">6 시계열</a><a href="#duel">대결</a><a href="#exam">쪽지시험</a></div>
 </div></nav>
 
 <div class="wrap" id="top">
 <header class="hero" id="hero">
- <figure class="cover"><img src="images/cover_main.webp" width="1360" height="768" fetchpriority="high" alt="연구실 교실. 박사 선생님이 차트 아홉 개가 그려진 화면을 가리키고, 주판봇과 초파리 조교가 양옆에 서 있으며, 하루·시아·모아와 실루엣 수강생 셋이 책상에 앉아 있다."></figure>
- <div class="eyebrow">데이터 시각화 특집 · 연구실 수업</div>
- <h1>시각화 차트 도감</h1>
- <p class="lead">히스토그램부터 SHAP, 실루엣, 자기상관까지 데이터 분석에서 자주 만나는 차트 32장을 6교시로 나눠 배웁니다. 그림 모양을 외우기보다, 그림마다 <b>어떤 질문에 답하는지</b>와 <b>어떻게 잘못 읽기 쉬운지</b>를 먼저 봅니다.</p>
- <div class="byline">글 · 안상선 ((주)M-Robo 대표) · 자매편 <a href="https://adminmrobo.github.io/probability_distribution_dictionary/">확률분포 딕셔너리</a></div>
- <div class="castrow" id="castrow" aria-hidden="true"></div>
- <div class="kpis">
-  <div class="kpi"><b>32</b><span>차트 카드</span></div>
-  <div class="kpi"><b>6</b><span>교시 (질문의 종류)</span></div>
-  <div class="kpi"><b>32</b><span>함께 보는 짝 관계</span></div>
-  <div class="kpi"><b>3축</b><span>단계 · 데이터 · 질문 지도</span></div>
+ <div class="eyebrow">데이터 시각화 특집 · 연구실 수업 · 1편</div>
+ <h1>시각화 차트 32장, 한눈에 보기</h1>
+ <p class="lead">히스토그램부터 SHAP, 실루엣, 자기상관까지 데이터 분석에서 자주 만나는 차트 32장을 먼저 한 장씩 그려 보여 드립니다. 그림마다 <b>어떤 질문에 답하는지</b>, <b>어떻게 잘못 읽기 쉬운지</b>를 한 줄로 붙였습니다. 자세한 설명과 실험은 아래 연구실 수업(6교시)에서 이어집니다.</p>
+ <div class="byline">글 · 안상선 ((주)M-Robo 대표) · 2026-11-24 · 자매편 <a href="https://adminmrobo.github.io/probability_distribution_dictionary/">확률분포 딕셔너리</a></div>
+ <div class="jump">
+  <a class="b3d" href="#map"><i>3D</i><span><b>32장을 3D 관계 지도에서 돌려 보세요</b><small>가로 분석 단계 · 높이 데이터 종류 · 앞뒤 교시, 짝 그림 32쌍을 선으로</small></span><em>지도 열기 ↓</em></a>
+  <a class="b3d alt" href="#lesson"><i>수업</i><span><b>연구실 수업으로 자세히 배우기</b><small>6교시 · 실험 6개 · 대결 · 쪽지시험</small></span><em>수업 시작 ↓</em></a>
  </div>
- <div class="three" id="three">
+</header>
+
+<div class="intro">
+ <div class="three" id="three" style="margin:0">
   <b>처음 오신 분께 — 이 페이지를 3줄로</b>
   <ol>
    <li><b>무엇을</b>: 차트 32장이 각각 어떤 질문에 답하는지, 어떻게 읽고 어떻게 잘못 읽기 쉬운지 배웁니다.</li>
@@ -327,8 +371,346 @@ footer{border-top:1px solid var(--rule);padding:28px 0 44px;color:var(--muted);f
    <dt>ACF · PACF</dt><dd>자기상관 · 편자기상관</dd>
   </dl></details>
  </div>
+ <div class="panel">
+  <h2>카드 읽는 법</h2>
+  <ul class="legendl">
+   <li><b>그림</b> 정해진 난수로 만든 예시 데이터로 이 페이지가 직접 그렸습니다. 모양을 익히는 용도입니다.</li>
+   <li><b>질문</b> 이 차트가 답하는 질문 한 줄. 차트를 고를 때 이것부터 봅니다.</li>
+   <li><b>읽는 법</b> 무엇을 보면 되는지 한 줄.</li>
+   <li><b>흔한 오독</b> 수강생 X1~X3가 자주 틀리는 읽기와 바로잡기.</li>
+   <li><b>꼬리표</b> 분석 단계(탐색 · 확인·비교 · 모델링·평가 · 설명)와 다루는 데이터(연속값 · 범주·개수 · 시간 순서 · 모델 점수·예측).</li>
+  </ul>
+  <div class="glegend" id="glegend"></div>
+ </div>
+</div>
+
+<section id="atlas" aria-label="차트 32장 한눈에 보기"><div class="agroup" id="ag1" style="--gc:var(--g1)"><h2><span class="hex">1</span>분포 보기 <span class="gq">값들이 어떻게 퍼져 있나? · 5장</span></h2><div class="agrid"><article class="acard" id="a-hist" style="--gc:var(--g1)">
+<div class="ah"><b>히스토그램·밀도곡선</b><small>Histogram &amp; KDE</small></div>
+<canvas class="atl" data-chart="hist" role="img" aria-label="히스토그램·밀도곡선 예시 그림"></canvas>
+<p class="aq">값이 어디에 몰려 있고, 봉우리는 몇 개인가?</p>
+<p class="row"><b>읽는 법</b>막대 높이는 그 구간에 든 개수입니다.</p>
+<p class="row mis"><b>흔한 오독</b><s>“구간 수를 바꿔도 모양은 똑같잖아요.”</s> → 구간을 5개로 하면 봉우리 둘이 하나로 뭉개지기도 해.</p>
+<p class="row"><b>회사에서</b>배송 소요일, 주문 금액, 체류 시간의 퍼짐 확인</p>
+<div class="ctags"><span>탐색</span><span>연속값</span></div>
+<div class="alinks"><a href="#c-hist" data-open="hist">1교시 카드 자세히 ↓</a><a href="#map" data-map="hist">3D 지도 위치</a></div>
+</article><article class="acard" id="a-box" style="--gc:var(--g1)">
+<div class="ah"><b>상자그림·바이올린 플롯</b><small>Box &amp; Violin plot</small></div>
+<canvas class="atl" data-chart="box" role="img" aria-label="상자그림·바이올린 플롯 예시 그림"></canvas>
+<p class="aq">여러 집단의 가운데·퍼짐·이상치를 한 번에 비교하면?</p>
+<p class="row"><b>읽는 법</b>상자 가운데 선은 중앙값, 상자는 가운데 50%(사분위 범위), 수염 밖 점은 이상치 후보입니다.</p>
+<p class="row mis"><b>흔한 오독</b><s>“두 상자가 겹치니까 두 지점은 차이가 없네요.”</s> → 겹쳐도 차이가 있을 수 있어! …라고 박사님이 그러셨어.</p>
+<p class="row"><b>회사에서</b>지점별 대기 시간, 라인별 불량 치수 비교</p>
+<div class="ctags"><span>탐색</span><span>범주·개수</span></div>
+<div class="alinks"><a href="#c-box" data-open="box">1교시 카드 자세히 ↓</a><a href="#map" data-map="box">3D 지도 위치</a></div>
+</article><article class="acard" id="a-ecdf" style="--gc:var(--g1)">
+<div class="ah"><b>누적분포 그림</b><small>ECDF</small></div>
+<canvas class="atl" data-chart="ecdf" role="img" aria-label="누적분포 그림 예시 그림"></canvas>
+<p class="aq">이 값 이하가 전체의 몇 %인가?</p>
+<p class="row"><b>읽는 법</b>왼쪽부터 쌓아 올린 계단입니다.</p>
+<p class="row mis"><b>흔한 오독</b><s>“계단이 가파른 곳은 값이 큰 곳이죠?”</s> → 가파른 곳은 값이 ‘많이 몰린’ 곳이야.</p>
+<p class="row"><b>회사에서</b>‘요청의 95%가 몇 초 안에 끝나나’ 같은 서비스 수준 확인</p>
+<div class="ctags"><span>탐색</span><span>연속값</span></div>
+<div class="alinks"><a href="#c-ecdf" data-open="ecdf">1교시 카드 자세히 ↓</a><a href="#map" data-map="ecdf">3D 지도 위치</a></div>
+</article><article class="acard" id="a-qq" style="--gc:var(--g1)">
+<div class="ah"><b>QQ 플롯</b><small>Quantile-Quantile plot</small></div>
+<canvas class="atl" data-chart="qq" role="img" aria-label="QQ 플롯 예시 그림"></canvas>
+<p class="aq">내 데이터가 정규분포(또는 기준 분포)를 따르나?</p>
+<p class="row"><b>읽는 법</b>점이 대각선 위에 있으면 기준 분포와 닮았습니다.</p>
+<p class="row mis"><b>흔한 오독</b><s>“가운데 점들이 선 위에 있으니 정규분포 맞아요.”</s> → 문제는 늘 끝이야.</p>
+<p class="row"><b>회사에서</b>수익률 꼬리 위험 점검, 회귀 잔차의 정규성 확인</p>
+<div class="ctags"><span>확인·비교</span><span>연속값</span></div>
+<div class="alinks"><a href="#c-qq" data-open="qq">1교시 카드 자세히 ↓</a><a href="#map" data-map="qq">3D 지도 위치</a></div>
+</article><article class="acard" id="a-ks" style="--gc:var(--g1)">
+<div class="ah"><b>KS 플롯</b><small>Kolmogorov–Smirnov plot</small></div>
+<canvas class="atl" data-chart="ks" role="img" aria-label="KS 플롯 예시 그림"></canvas>
+<p class="aq">두 집단(또는 데이터와 기준 분포)의 분포가 얼마나 다른가?</p>
+<p class="row"><b>읽는 법</b>두 누적분포 계단 사이의 가장 큰 세로 차이가 KS 통계량 D입니다.</p>
+<p class="row mis"><b>흔한 오독</b><s>“D는 클수록 무조건 좋은 거죠?”</s> → 모델 변별력이면 클수록 좋아.</p>
+<p class="row"><b>회사에서</b>신용점수 모델 변별력, 운영 데이터 변화(드리프트) 감시</p>
+<div class="ctags"><span>확인·비교</span><span>연속값</span></div>
+<div class="alinks"><a href="#c-ks" data-open="ks">1교시 카드 자세히 ↓</a><a href="#map" data-map="ks">3D 지도 위치</a></div>
+</article></div></div><div class="agroup" id="ag2" style="--gc:var(--g2)"><h2><span class="hex">2</span>관계 보기 <span class="gq">두 변수가 함께 움직이나? · 5장</span></h2><div class="agrid"><article class="acard" id="a-scatter" style="--gc:var(--g2)">
+<div class="ah"><b>산점도</b><small>Scatter plot</small></div>
+<canvas class="atl" data-chart="scatter" role="img" aria-label="산점도 예시 그림"></canvas>
+<p class="aq">한 변수가 커질 때 다른 변수는 어떻게 되나?</p>
+<p class="row"><b>읽는 법</b>점 구름이 오른쪽 위로 기울면 함께 증가, 오른쪽 아래면 반대로 움직입니다.</p>
+<p class="row mis"><b>흔한 오독</b><s>“점이 오른쪽 위로 가니까 광고비가 매출을 올린 거예요.”</s> → 함께 움직인다(상관)와 일으킨다(인과)는 달라.</p>
+<p class="row"><b>회사에서</b>광고비와 매출, 온도와 불량률의 관계 첫 확인</p>
+<div class="ctags"><span>탐색</span><span>연속값</span></div>
+<div class="alinks"><a href="#c-scatter" data-open="scatter">2교시 카드 자세히 ↓</a><a href="#map" data-map="scatter">3D 지도 위치</a></div>
+</article><article class="acard" id="a-pair" style="--gc:var(--g2)">
+<div class="ah"><b>산점도 행렬</b><small>Pair plot</small></div>
+<canvas class="atl" data-chart="pair" role="img" aria-label="산점도 행렬 예시 그림"></canvas>
+<p class="aq">변수가 여럿일 때 어떤 쌍이 관련 있나?</p>
+<p class="row"><b>읽는 법</b>가로·세로 변수가 만나는 자리마다 산점도가 있고, 대각선에는 각 변수의 분포가 있습니다.</p>
+<p class="row mis"><b>흔한 오독</b><s>“이 그림 하나면 세 변수가 얽힌 관계도 다 보여요.”</s> → 두 개씩만 보여 주는 그림이라, 세 변수가 함께 얽힌 효과는 안 보인대요.</p>
+<p class="row"><b>회사에서</b>분석 첫날, 변수 5~8개의 관계를 훑어볼 때</p>
+<div class="ctags"><span>탐색</span><span>연속값</span></div>
+<div class="alinks"><a href="#c-pair" data-open="pair">2교시 카드 자세히 ↓</a><a href="#map" data-map="pair">3D 지도 위치</a></div>
+</article><article class="acard" id="a-heat" style="--gc:var(--g2)">
+<div class="ah"><b>상관 히트맵</b><small>Correlation heatmap</small></div>
+<canvas class="atl" data-chart="heat" role="img" aria-label="상관 히트맵 예시 그림"></canvas>
+<p class="aq">수십 개 변수 사이의 상관을 한 장에 보면?</p>
+<p class="row"><b>읽는 법</b>색이 진할수록 상관이 강하고, 색의 종류가 방향(+/−)을 말합니다.</p>
+<p class="row mis"><b>흔한 오독</b><s>“색이 하얀(0) 쌍은 아무 관계가 없는 거예요.”</s> → 상관계수는 직선 관계만 재.</p>
+<p class="row"><b>회사에서</b>비슷한 정보를 담은 변수(다중공선성) 찾기</p>
+<div class="ctags"><span>탐색</span><span>연속값</span></div>
+<div class="alinks"><a href="#c-heat" data-open="heat">2교시 카드 자세히 ↓</a><a href="#map" data-map="heat">3D 지도 위치</a></div>
+</article><article class="acard" id="a-cross" style="--gc:var(--g2)">
+<div class="ah"><b>교차분석표·모자이크 플롯</b><small>Contingency table &amp; Mosaic plot</small></div>
+<canvas class="atl" data-chart="cross" role="img" aria-label="교차분석표·모자이크 플롯 예시 그림"></canvas>
+<p class="aq">두 범주형 변수(예: 연령대와 요금제)는 서로 관련 있나?</p>
+<p class="row"><b>읽는 법</b>표는 행 안의 비율을 비교합니다.</p>
+<p class="row mis"><b>흔한 오독</b><s>“무제한 요금제는 20대가 120명으로 제일 많으니 20대가 제일 좋아해요.”</s> → 20대 손님이 원래 많아서 그래! 비율로 보면 50대가 60%로 더 높아.</p>
+<p class="row"><b>회사에서</b>설문 응답 분석, 고객 세그먼트별 선택 비교</p>
+<div class="ctags"><span>확인·비교</span><span>범주·개수</span></div>
+<div class="alinks"><a href="#c-cross" data-open="cross">2교시 카드 자세히 ↓</a><a href="#map" data-map="cross">3D 지도 위치</a></div>
+</article><article class="acard" id="a-resid" style="--gc:var(--g2)">
+<div class="ah"><b>잔차 플롯</b><small>Residual plot</small></div>
+<canvas class="atl" data-chart="resid" role="img" aria-label="잔차 플롯 예시 그림"></canvas>
+<p class="aq">회귀 모델이 놓친 패턴이 남아 있나?</p>
+<p class="row"><b>읽는 법</b>가로는 예측값, 세로는 잔차(실제 − 예측)입니다.</p>
+<p class="row mis"><b>흔한 오독</b><s>“R²가 0.9니까 잔차는 안 봐도 돼요.”</s> → R²가 높아도 잔차가 U자로 휘면 모델이 체계적으로 틀리고 있는 거야.</p>
+<p class="row"><b>회사에서</b>수요 예측·가격 모델의 체계적 오차 점검</p>
+<div class="ctags"><span>모델링·평가</span><span>모델 점수·예측</span></div>
+<div class="alinks"><a href="#c-resid" data-open="resid">2교시 카드 자세히 ↓</a><a href="#map" data-map="resid">3D 지도 위치</a></div>
+</article></div></div><div class="agroup" id="ag3" style="--gc:var(--g3)"><h2><span class="hex">3</span>모델 평가 <span class="gq">모델이 맞혔나, 어떻게 틀렸나? · 6장</span></h2><div class="agrid"><article class="acard" id="a-cm" style="--gc:var(--g3)">
+<div class="ah"><b>혼동행렬</b><small>Confusion matrix</small></div>
+<canvas class="atl" data-chart="cm" role="img" aria-label="혼동행렬 예시 그림"></canvas>
+<p class="aq">맞힌 것과 틀린 것을 종류별로 세면?</p>
+<p class="row"><b>읽는 법</b>2 × 2 표입니다.</p>
+<p class="row mis"><b>흔한 오독</b><s>“정확도 99%면 표는 안 봐도 되잖아요.”</s> → 사기가 1%면 ‘전부 정상’이라고만 해도 99%야.</p>
+<p class="row"><b>회사에서</b>사기 탐지, 불량 검출, 선별 검사 결과 보고</p>
+<div class="ctags"><span>모델링·평가</span><span>범주·개수</span></div>
+<div class="alinks"><a href="#c-cm" data-open="cm">3교시 카드 자세히 ↓</a><a href="#map" data-map="cm">3D 지도 위치</a></div>
+</article><article class="acard" id="a-err" style="--gc:var(--g3)">
+<div class="ah"><b>1종·2종 오류 그림</b><small>Type I / Type II error</small></div>
+<canvas class="atl" data-chart="err" role="img" aria-label="1종·2종 오류 그림 예시 그림"></canvas>
+<p class="aq">기준선을 어디에 그으면 어떤 실수가 늘어나나?</p>
+<p class="row"><b>읽는 법</b>종 모양 두 개 중 왼쪽은 ‘정상(차이 없음)’, 오른쪽은 ‘이상(차이 있음)’ 세계입니다.</p>
+<p class="row mis"><b>흔한 오독</b><s>“α를 0으로 만들면 실수가 없어지겠네요.”</s> → 헛경보는 0이 되는데, 진짜도 전부 놓쳐서 β가 1이 돼.</p>
+<p class="row"><b>회사에서</b>A/B 테스트 표본 수 정하기, 품질 검사 기준 정하기</p>
+<div class="ctags"><span>확인·비교</span><span>연속값</span></div>
+<div class="alinks"><a href="#c-err" data-open="err">3교시 카드 자세히 ↓</a><a href="#map" data-map="err">3D 지도 위치</a></div>
+</article><article class="acard" id="a-roc" style="--gc:var(--g3)">
+<div class="ah"><b>ROC 곡선</b><small>ROC curve</small></div>
+<canvas class="atl" data-chart="roc" role="img" aria-label="ROC 곡선 예시 그림"></canvas>
+<p class="aq">기준선을 모든 위치로 옮겨 보면, 모델이 두 집단을 얼마나 잘 가르나?</p>
+<p class="row"><b>읽는 법</b>가로는 헛경보율(FPR), 세로는 재현율(TPR)입니다.</p>
+<p class="row mis"><b>흔한 오독</b><s>“AUC 0.95면 양성이 아무리 드물어도 믿을 수 있어요.”</s> → 양성이 드물면 ROC는 낙관적으로 보여.</p>
+<p class="row"><b>회사에서</b>신용평가·이탈 예측 모델 비교</p>
+<div class="ctags"><span>모델링·평가</span><span>모델 점수·예측</span></div>
+<div class="alinks"><a href="#c-roc" data-open="roc">3교시 카드 자세히 ↓</a><a href="#map" data-map="roc">3D 지도 위치</a></div>
+</article><article class="acard" id="a-pr" style="--gc:var(--g3)">
+<div class="ah"><b>정밀도-재현율 곡선</b><small>Precision–Recall curve</small></div>
+<canvas class="atl" data-chart="pr" role="img" aria-label="정밀도-재현율 곡선 예시 그림"></canvas>
+<p class="aq">양성이 드물 때, 찾아낸 것 중 진짜는 얼마나 되나?</p>
+<p class="row"><b>읽는 법</b>가로는 재현율, 세로는 정밀도입니다.</p>
+<p class="row mis"><b>흔한 오독</b><s>“ROC가 좋으니 PR도 당연히 좋겠죠.”</s> → 실험 패널에서 양성 비율을 1%로 낮춰 봤더니, ROC는 그대로인데 PR은 확 내려갔어요!</p>
+<p class="row"><b>회사에서</b>희귀 사건(사기, 고장, 희귀 질환) 탐지</p>
+<div class="ctags"><span>모델링·평가</span><span>모델 점수·예측</span></div>
+<div class="alinks"><a href="#c-pr" data-open="pr">3교시 카드 자세히 ↓</a><a href="#map" data-map="pr">3D 지도 위치</a></div>
+</article><article class="acard" id="a-cal" style="--gc:var(--g3)">
+<div class="ah"><b>보정 곡선</b><small>Calibration curve</small></div>
+<canvas class="atl" data-chart="cal" role="img" aria-label="보정 곡선 예시 그림"></canvas>
+<p class="aq">모델이 ‘70%’라고 한 일들이 실제로 70% 일어났나?</p>
+<p class="row"><b>읽는 법</b>예측 확률을 10구간으로 묶어, 구간마다 실제로 일어난 비율을 점으로 찍습니다.</p>
+<p class="row mis"><b>흔한 오독</b><s>“AUC가 높으니까 확률 숫자도 정확하겠죠.”</s> → AUC는 순서(누가 더 위험한가)만 봐.</p>
+<p class="row"><b>회사에서</b>대출 부도확률, 보험료 산정, 강수확률</p>
+<div class="ctags"><span>모델링·평가</span><span>모델 점수·예측</span></div>
+<div class="alinks"><a href="#c-cal" data-open="cal">3교시 카드 자세히 ↓</a><a href="#map" data-map="cal">3D 지도 위치</a></div>
+</article><article class="acard" id="a-lift" style="--gc:var(--g3)">
+<div class="ah"><b>리프트·이득 차트</b><small>Lift &amp; Gain chart</small></div>
+<canvas class="atl" data-chart="lift" role="img" aria-label="리프트·이득 차트 예시 그림"></canvas>
+<p class="aq">점수 상위 10%만 골라도 양성을 얼마나 잡나?</p>
+<p class="row"><b>읽는 법</b>고객을 점수 높은 순으로 세우고, 상위 x%에서 잡은 양성의 누적 비율(이득)을 그립니다.</p>
+<p class="row mis"><b>흔한 오독</b><s>“리프트 3이면 응답률이 3%라는 거죠?”</s> → 배수야, 배수! 무작위 응답률이 2%면 상위 고객 응답률은 6%라는 뜻이지.</p>
+<p class="row"><b>회사에서</b>DM·쿠폰 대상 선정, 영업 우선순위</p>
+<div class="ctags"><span>모델링·평가</span><span>모델 점수·예측</span></div>
+<div class="alinks"><a href="#c-lift" data-open="lift">3교시 카드 자세히 ↓</a><a href="#map" data-map="lift">3D 지도 위치</a></div>
+</article></div></div><div class="agroup" id="ag4" style="--gc:var(--g4)"><h2><span class="hex">4</span>진단과 해석 <span class="gq">잘 배웠나, 왜 그렇게 판단했나? · 7장</span></h2><div class="agrid"><article class="acard" id="a-bv" style="--gc:var(--g4)">
+<div class="ah"><b>편향-분산 트레이드오프</b><small>Bias–Variance tradeoff</small></div>
+<canvas class="atl" data-chart="bv" role="img" aria-label="편향-분산 트레이드오프 예시 그림"></canvas>
+<p class="aq">모델을 얼마나 복잡하게 만들어야 하나?</p>
+<p class="row"><b>읽는 법</b>가로는 모델 복잡도입니다.</p>
+<p class="row mis"><b>흔한 오독</b><s>“복잡한 모델일수록 좋죠. 학습 오차가 0이잖아요.”</s> → 학습 오차 0은 외웠다는 뜻일 수 있어.</p>
+<p class="row"><b>회사에서</b>나무 깊이·다항 차수 같은 설정값 고르기</p>
+<div class="ctags"><span>모델링·평가</span><span>모델 점수·예측</span></div>
+<div class="alinks"><a href="#c-bv" data-open="bv">4교시 카드 자세히 ↓</a><a href="#map" data-map="bv">3D 지도 위치</a></div>
+</article><article class="acard" id="a-lc" style="--gc:var(--g4)">
+<div class="ah"><b>학습 곡선</b><small>Learning curve</small></div>
+<canvas class="atl" data-chart="lc" role="img" aria-label="학습 곡선 예시 그림"></canvas>
+<p class="aq">데이터를 더 모으면 나아질까?</p>
+<p class="row"><b>읽는 법</b>가로는 학습 데이터 양, 두 선은 학습 점수와 검증 점수입니다.</p>
+<p class="row mis"><b>흔한 오독</b><s>“점수가 낮으면 무조건 데이터를 더 모으면 돼요.”</s> → 두 선이 이미 붙어 있으면 데이터를 사 와도 헛돈이야.</p>
+<p class="row"><b>회사에서</b>데이터 추가 구매·라벨링 예산 판단</p>
+<div class="ctags"><span>모델링·평가</span><span>모델 점수·예측</span></div>
+<div class="alinks"><a href="#c-lc" data-open="lc">4교시 카드 자세히 ↓</a><a href="#map" data-map="lc">3D 지도 위치</a></div>
+</article><article class="acard" id="a-loss" style="--gc:var(--g4)">
+<div class="ah"><b>손실 곡선</b><small>Training/Validation loss curve</small></div>
+<canvas class="atl" data-chart="loss" role="img" aria-label="손실 곡선 예시 그림"></canvas>
+<p class="aq">학습을 언제 멈춰야 하나?</p>
+<p class="row"><b>읽는 법</b>가로는 반복 횟수(에폭)입니다.</p>
+<p class="row mis"><b>흔한 오독</b><s>“학습 손실이 계속 내려가니 더 돌리면 되죠.”</s> → 검증 손실을 봐.</p>
+<p class="row"><b>회사에서</b>신경망 학습 모니터링, 조기 종료 설정</p>
+<div class="ctags"><span>모델링·평가</span><span>모델 점수·예측</span></div>
+<div class="alinks"><a href="#c-loss" data-open="loss">4교시 카드 자세히 ↓</a><a href="#map" data-map="loss">3D 지도 위치</a></div>
+</article><article class="acard" id="a-gini" style="--gc:var(--g4)">
+<div class="ah"><b>지니 불순도와 엔트로피</b><small>Gini impurity vs Entropy</small></div>
+<canvas class="atl" data-chart="gini" role="img" aria-label="지니 불순도와 엔트로피 예시 그림"></canvas>
+<p class="aq">결정나무는 어떤 질문으로 데이터를 나누나?</p>
+<p class="row"><b>읽는 법</b>가로는 한 범주의 비율 p입니다.</p>
+<p class="row mis"><b>흔한 오독</b><s>“지니로 키운 나무와 엔트로피로 키운 나무는 완전히 다르겠죠?”</s> → 높이만 다르고 모양이 닮아서, 대부분 비슷한 질문을 고른대요.</p>
+<p class="row"><b>회사에서</b>결정나무·랜덤포레스트 분할 기준 이해</p>
+<div class="ctags"><span>설명</span><span>범주·개수</span></div>
+<div class="alinks"><a href="#c-gini" data-open="gini">4교시 카드 자세히 ↓</a><a href="#map" data-map="gini">3D 지도 위치</a></div>
+</article><article class="acard" id="a-imp" style="--gc:var(--g4)">
+<div class="ah"><b>특성 중요도</b><small>Feature importance</small></div>
+<canvas class="atl" data-chart="imp" role="img" aria-label="특성 중요도 예시 그림"></canvas>
+<p class="aq">모델이 어떤 변수에 많이 기댔나?</p>
+<p class="row"><b>읽는 법</b>막대가 길수록 중요합니다.</p>
+<p class="row mis"><b>흔한 오독</b><s>“소득 중요도가 1등이니까 소득을 올려 주면 연체가 줄겠네요.”</s> → 중요도는 ‘많이 기댔다’만 말해.</p>
+<p class="row"><b>회사에서</b>모델 설명 보고서, 변수 정리</p>
+<div class="ctags"><span>설명</span><span>모델 점수·예측</span></div>
+<div class="alinks"><a href="#c-imp" data-open="imp">4교시 카드 자세히 ↓</a><a href="#map" data-map="imp">3D 지도 위치</a></div>
+</article><article class="acard" id="a-shap" style="--gc:var(--g4)">
+<div class="ah"><b>SHAP 요약 그림</b><small>SHAP summary plot</small></div>
+<canvas class="atl" data-chart="shap" role="img" aria-label="SHAP 요약 그림 예시 그림"></canvas>
+<p class="aq">각 변수가 예측을 어느 방향으로, 얼마나 밀었나?</p>
+<p class="row"><b>읽는 법</b>점 하나가 고객 한 명입니다.</p>
+<p class="row mis"><b>흔한 오독</b><s>“SHAP 값이 큰 변수가 연체의 원인이에요.”</s> → SHAP은 모델의 계산을 변수별로 나눈 거야.</p>
+<p class="row"><b>회사에서</b>대출 거절 사유 설명, 규제 대응</p>
+<div class="ctags"><span>설명</span><span>모델 점수·예측</span></div>
+<div class="alinks"><a href="#c-shap" data-open="shap">4교시 카드 자세히 ↓</a><a href="#map" data-map="shap">3D 지도 위치</a></div>
+</article><article class="acard" id="a-pdp" style="--gc:var(--g4)">
+<div class="ah"><b>부분의존 그림·ICE</b><small>PDP &amp; ICE plot</small></div>
+<canvas class="atl" data-chart="pdp" role="img" aria-label="부분의존 그림·ICE 예시 그림"></canvas>
+<p class="aq">한 변수를 바꿀 때 예측은 어떻게 변하나?</p>
+<p class="row"><b>읽는 법</b>굵은 선(PDP)은 평균 반응, 얇은 선들(ICE)은 고객 한 명 한 명의 반응입니다.</p>
+<p class="row mis"><b>흔한 오독</b><s>“평균 선이 평평하니 나이는 예측에 영향이 없어요.”</s> → 얇은 선을 켜 보니 절반은 오르고 절반은 내려서, 평균만 평평했던 거래요!</p>
+<p class="row"><b>회사에서</b>가격·한도 정책 시뮬레이션</p>
+<div class="ctags"><span>설명</span><span>모델 점수·예측</span></div>
+<div class="alinks"><a href="#c-pdp" data-open="pdp">4교시 카드 자세히 ↓</a><a href="#map" data-map="pdp">3D 지도 위치</a></div>
+</article></div></div><div class="agroup" id="ag5" style="--gc:var(--g5)"><h2><span class="hex">5</span>줄이기·묶기 <span class="gq">차원을 줄일 수 있나, 무리로 묶을 수 있나? · 6장</span></h2><div class="agrid"><article class="acard" id="a-scree" style="--gc:var(--g5)">
+<div class="ah"><b>스크리 그림·누적 설명분산</b><small>Scree &amp; Cumulative explained variance</small></div>
+<canvas class="atl" data-chart="scree" role="img" aria-label="스크리 그림·누적 설명분산 예시 그림"></canvas>
+<p class="aq">주성분 몇 개면 정보를 충분히 담나?</p>
+<p class="row"><b>읽는 법</b>막대는 주성분 하나가 설명하는 분산 비율, 계단선은 누적 비율입니다.</p>
+<p class="row mis"><b>흔한 오독</b><s>“90%는 꼭 지켜야 하는 법칙이죠?”</s> → 관례일 뿐이야.</p>
+<p class="row"><b>회사에서</b>설문 문항 요약, 고객 변수 압축</p>
+<div class="ctags"><span>탐색</span><span>연속값</span></div>
+<div class="alinks"><a href="#c-scree" data-open="scree">5교시 카드 자세히 ↓</a><a href="#map" data-map="scree">3D 지도 위치</a></div>
+</article><article class="acard" id="a-biplot" style="--gc:var(--g5)">
+<div class="ah"><b>PCA 바이플롯</b><small>PCA biplot</small></div>
+<canvas class="atl" data-chart="biplot" role="img" aria-label="PCA 바이플롯 예시 그림"></canvas>
+<p class="aq">관측치(점)와 변수(화살표)를 한 지도에서 보면?</p>
+<p class="row"><b>읽는 법</b>점은 관측치를 두 주성분 좌표로 옮긴 것이고, 화살표는 원래 변수의 방향입니다.</p>
+<p class="row mis"><b>흔한 오독</b><s>“가로축이 ‘소득’, 세로축이 ‘나이’죠?”</s> → 축은 원래 변수가 아니라 여러 변수를 섞어 만든 새 축이래요.</p>
+<p class="row"><b>회사에서</b>고객 포지셔닝 지도, 브랜드 인식 지도</p>
+<div class="ctags"><span>탐색</span><span>연속값</span></div>
+<div class="alinks"><a href="#c-biplot" data-open="biplot">5교시 카드 자세히 ↓</a><a href="#map" data-map="biplot">3D 지도 위치</a></div>
+</article><article class="acard" id="a-tsne" style="--gc:var(--g5)">
+<div class="ah"><b>t-SNE·UMAP 지도</b><small>t-SNE / UMAP map</small></div>
+<canvas class="atl" data-chart="tsne" role="img" aria-label="t-SNE·UMAP 지도 예시 그림"></canvas>
+<p class="aq">고차원 데이터에 비슷한 것끼리의 무리가 있나?</p>
+<p class="row"><b>읽는 법</b>가까운 점은 원래 공간에서도 이웃입니다.</p>
+<p class="row mis"><b>흔한 오독</b><s>“두 무리가 멀리 떨어졌으니 엄청 다른 고객들이네요.”</s> → 이 지도는 이웃 관계만 지켜.</p>
+<p class="row"><b>회사에서</b>문서·이미지 임베딩 탐색, 고객 무리 탐색</p>
+<div class="ctags"><span>탐색</span><span>연속값</span></div>
+<div class="alinks"><a href="#c-tsne" data-open="tsne">5교시 카드 자세히 ↓</a><a href="#map" data-map="tsne">3D 지도 위치</a></div>
+</article><article class="acard" id="a-elbow" style="--gc:var(--g5)">
+<div class="ah"><b>엘보 곡선</b><small>Elbow curve</small></div>
+<canvas class="atl" data-chart="elbow" role="img" aria-label="엘보 곡선 예시 그림"></canvas>
+<p class="aq">군집을 몇 개로 나눌까?</p>
+<p class="row"><b>읽는 법</b>가로는 군집 수 k, 세로는 군집 안 제곱합(WCSS)입니다.</p>
+<p class="row mis"><b>흔한 오독</b><s>“WCSS가 제일 낮은 k가 정답이에요.”</s> → 그럼 점마다 무리 하나씩 주면 0이잖아! …아, 그래서 팔꿈치를 보는구나.</p>
+<p class="row"><b>회사에서</b>고객 세분화 개수 정하기</p>
+<div class="ctags"><span>모델링·평가</span><span>연속값</span></div>
+<div class="alinks"><a href="#c-elbow" data-open="elbow">5교시 카드 자세히 ↓</a><a href="#map" data-map="elbow">3D 지도 위치</a></div>
+</article><article class="acard" id="a-sil" style="--gc:var(--g5)">
+<div class="ah"><b>실루엣 그림</b><small>Silhouette plot</small></div>
+<canvas class="atl" data-chart="sil" role="img" aria-label="실루엣 그림 예시 그림"></canvas>
+<p class="aq">각 점이 자기 군집에 잘 들어맞나?</p>
+<p class="row"><b>읽는 법</b>점마다 실루엣 점수를 막대로 그려 군집별로 쌓습니다.</p>
+<p class="row mis"><b>흔한 오독</b><s>“평균 점수만 높으면 모든 군집이 괜찮아요.”</s> → 평균이 높아도 한 군집에 음수 막대가 잔뜩일 수 있어.</p>
+<p class="row"><b>회사에서</b>세분화 결과 품질 점검</p>
+<div class="ctags"><span>모델링·평가</span><span>연속값</span></div>
+<div class="alinks"><a href="#c-sil" data-open="sil">5교시 카드 자세히 ↓</a><a href="#map" data-map="sil">3D 지도 위치</a></div>
+</article><article class="acard" id="a-dendro" style="--gc:var(--g5)">
+<div class="ah"><b>덴드로그램</b><small>Dendrogram</small></div>
+<canvas class="atl" data-chart="dendro" role="img" aria-label="덴드로그램 예시 그림"></canvas>
+<p class="aq">데이터가 어떤 순서로 묶이고, 어디서 자르면 될까?</p>
+<p class="row"><b>읽는 법</b>아래에서 가까운 것부터 합쳐 올라갑니다.</p>
+<p class="row mis"><b>흔한 오독</b><s>“좌우로 붙어 있는 두 잎은 아주 비슷한 거죠?”</s> → 좌우 순서는 가지를 돌려 바꿀 수 있어.</p>
+<p class="row"><b>회사에서</b>상품·매장 분류, 유전자 발현 묶기</p>
+<div class="ctags"><span>모델링·평가</span><span>연속값</span></div>
+<div class="alinks"><a href="#c-dendro" data-open="dendro">5교시 카드 자세히 ↓</a><a href="#map" data-map="dendro">3D 지도 위치</a></div>
+</article></div></div><div class="agroup" id="ag6" style="--gc:var(--g6)"><h2><span class="hex">6</span>시계열 <span class="gq">시간에 따라 어떻게 변하나? · 3장</span></h2><div class="agrid"><article class="acard" id="a-line" style="--gc:var(--g6)">
+<div class="ah"><b>시계열 선 그래프·이동평균</b><small>Line chart &amp; Moving average</small></div>
+<canvas class="atl" data-chart="line" role="img" aria-label="시계열 선 그래프·이동평균 예시 그림"></canvas>
+<p class="aq">오르는 추세인가, 일시적 출렁임인가?</p>
+<p class="row"><b>읽는 법</b>얇은 선은 원래 값, 굵은 선은 이동평균(최근 k개의 평균)입니다.</p>
+<p class="row mis"><b>흔한 오독</b><s>“이동평균이 꺾였으니 내일부터 매출이 바뀌겠네요.”</s> → 이동평균은 늦게 따라와.</p>
+<p class="row"><b>회사에서</b>일별 매출·트래픽 추세 보고</p>
+<div class="ctags"><span>탐색</span><span>시간 순서</span></div>
+<div class="alinks"><a href="#c-line" data-open="line">6교시 카드 자세히 ↓</a><a href="#map" data-map="line">3D 지도 위치</a></div>
+</article><article class="acard" id="a-decomp" style="--gc:var(--g6)">
+<div class="ah"><b>시계열 분해</b><small>Seasonal decomposition</small></div>
+<canvas class="atl" data-chart="decomp" role="img" aria-label="시계열 분해 예시 그림"></canvas>
+<p class="aq">변화가 추세, 계절, 나머지 중 어디서 왔나?</p>
+<p class="row"><b>읽는 법</b>네 줄 그림입니다.</p>
+<p class="row mis"><b>흔한 오독</b><s>“추세 줄이 올라가니까 계절 효과는 없어요.”</s> → 추세와 계절은 따로 떼어 본 거라 둘 다 있을 수 있어요.</p>
+<p class="row"><b>회사에서</b>성수기 효과를 뺀 실제 성장 판단</p>
+<div class="ctags"><span>탐색</span><span>시간 순서</span></div>
+<div class="alinks"><a href="#c-decomp" data-open="decomp">6교시 카드 자세히 ↓</a><a href="#map" data-map="decomp">3D 지도 위치</a></div>
+</article><article class="acard" id="a-acf" style="--gc:var(--g6)">
+<div class="ah"><b>자기상관 그림 (ACF·PACF)</b><small>ACF &amp; PACF</small></div>
+<canvas class="atl" data-chart="acf" role="img" aria-label="자기상관 그림 (ACF·PACF) 예시 그림"></canvas>
+<p class="aq">오늘 값이 며칠(몇 달) 전 값과 닮았나?</p>
+<p class="row"><b>읽는 법</b>막대는 시차 k만큼 떨어진 값끼리의 상관입니다.</p>
+<p class="row mis"><b>흔한 오독</b><s>“띠 밖에 막대 하나만 나와도 반드시 패턴이에요.”</s> → 띠는 95% 기준이라 막대 20개 중 1개쯤은 우연히 나갈 수 있어.</p>
+<p class="row"><b>회사에서</b>수요 예측 모델(ARIMA) 차수 정하기, 잔차 점검</p>
+<div class="ctags"><span>확인·비교</span><span>시간 순서</span></div>
+<div class="alinks"><a href="#c-acf" data-open="acf">6교시 카드 자세히 ↓</a><a href="#map" data-map="acf">3D 지도 위치</a></div>
+</article></div></div></section>
+
+<section class="summary" id="choose" aria-labelledby="h-choose">
+ <h2 id="h-choose">한눈에 고르기</h2>
+ <div class="tbl"><table>
+  <thead><tr><th>하고 싶은 일</th><th>먼저 볼 차트</th><th>이유</th></tr></thead>
+  <tbody>
+   <tr><td>값이 어떻게 퍼졌는지 보기</td><td><a href="#a-hist">히스토그램</a>, <a href="#a-box">상자그림</a></td><td>모양은 히스토그램, 여러 집단 비교는 상자그림이 빠르다.</td></tr>
+   <tr><td>정규분포를 따르는지 확인</td><td><a href="#a-qq">QQ 플롯</a></td><td>꼬리가 기준에서 벗어나는지가 한눈에 보인다.</td></tr>
+   <tr><td>“95%가 몇 초 안에?” 같은 기준 잡기</td><td><a href="#a-ecdf">누적분포 그림</a></td><td>백분위를 그림에서 바로 읽는다. 구간 수를 정할 필요가 없다.</td></tr>
+   <tr><td>두 숫자 변수의 관계</td><td><a href="#a-scatter">산점도</a> → <a href="#a-heat">상관 히트맵</a></td><td>모양을 먼저 보고 숫자(r)는 그다음. 변수가 많으면 히트맵.</td></tr>
+   <tr><td>두 범주(연령대·요금제)의 관련</td><td><a href="#a-cross">교차분석표·모자이크</a></td><td>개수가 아니라 비율을 비교하고, 카이제곱으로 우연인지 확인한다.</td></tr>
+   <tr><td>분류 모델 성능 보고</td><td><a href="#a-cm">혼동행렬</a> + <a href="#a-roc">ROC 곡선</a></td><td>실수의 종류와 기준선 전체의 구분력을 함께 보여 준다.</td></tr>
+   <tr><td>드문 사건(사기·고장) 탐지</td><td><a href="#a-pr">정밀도-재현율 곡선</a></td><td>양성이 드물면 ROC는 낙관적으로 보인다.</td></tr>
+   <tr><td>예측 확률을 그대로 쓰기</td><td><a href="#a-cal">보정 곡선</a></td><td>“70%”가 실제로 70%인지는 AUC가 말해 주지 않는다.</td></tr>
+   <tr><td>마케팅 대상 고르기</td><td><a href="#a-lift">리프트·이득 차트</a></td><td>상위 몇 %만 골라도 얼마나 잡는지 바로 보인다.</td></tr>
+   <tr><td>데이터를 더 모을까, 모델을 바꿀까</td><td><a href="#a-lc">학습 곡선</a>, <a href="#a-bv">편향-분산</a></td><td>두 선 사이가 넓으면 데이터, 함께 낮으면 모델이 문제다.</td></tr>
+   <tr><td>학습을 언제 멈출까</td><td><a href="#a-loss">손실 곡선</a></td><td>검증 손실이 다시 오르는 곳이 멈출 곳이다.</td></tr>
+   <tr><td>예측 이유 설명</td><td><a href="#a-shap">SHAP</a>, <a href="#a-pdp">PDP·ICE</a></td><td>변수가 예측을 민 방향·크기와 변수별 반응 곡선을 보여 준다.</td></tr>
+   <tr><td>고객을 몇 그룹으로 나눌까</td><td><a href="#a-elbow">엘보</a> + <a href="#a-sil">실루엣</a></td><td>두 기준이 같은 k를 가리키는지 확인한다.</td></tr>
+   <tr><td>계절 효과를 뺀 진짜 성장</td><td><a href="#a-decomp">시계열 분해</a>, <a href="#a-acf">ACF</a></td><td>추세와 계절을 떼어 보고, 주기는 자기상관으로 확인한다.</td></tr>
+  </tbody>
+ </table></div>
+</section>
+
+<section class="sec" id="lesson" aria-labelledby="h-lesson">
+ <figure class="cover"><img src="images/cover_main.webp" width="1360" height="768" loading="lazy" decoding="async" alt="연구실 교실. 박사 선생님이 차트 아홉 개가 그려진 화면을 가리키고, 주판봇과 초파리 조교가 양옆에 서 있으며, 하루·시아·모아와 실루엣 수강생 셋이 책상에 앉아 있다."></figure>
+ <div class="eyebrow">연구실 수업</div>
+ <h2 id="h-lesson">시각화 차트 도감 — 6교시 수업</h2>
+ <p class="lead">위에서 훑어본 32장을 이제 6교시로 나눠 배웁니다. 교시마다 박사 선생님의 현장 질문, 수식 한 번 풀어 보기, 직접 만져 보는 실험, 차트 카드, 확인 퀴즈가 이어집니다.</p>
+ <div class="castrow" id="castrow" aria-hidden="true"></div>
+ <div class="kpis">
+  <div class="kpi"><b>32</b><span>차트 카드</span></div>
+  <div class="kpi"><b>6</b><span>교시 (질문의 종류)</span></div>
+  <div class="kpi"><b>32</b><span>함께 보는 짝 관계</span></div>
+  <div class="kpi"><b>3축</b><span>단계 · 데이터 · 질문 지도</span></div>
+ </div>
  <div data-dlg="hero"></div>
-</header>
+</section>
 
 <section class="sec" id="cast" aria-labelledby="h-cast">
  <h2 id="h-cast">오늘의 교실</h2>
@@ -1439,6 +1821,7 @@ const CAST=[
  ["조교",[["robo","robo_calc","주판봇","조교","계산과 코드 담당. 큰 숫자를 보면 서두르는 버릇이 있어, 일부러 성급한 결론을 내고 함께 고칩니다."],["fly","fly_point","초파리","조교","눈과 감각 담당. 3D 지도를 날아다니며 짝 그림을 이어 주고, 늘 ‘정말?’이라고 묻습니다."]]],
  ["수강생",[["asst","asst_smile","하루","수강생","평소엔 조수지만 오늘은 수강생. 수식이 나오면 대신 묻고, 교시 끝 세 줄 정리를 맡습니다."],["sia","sia_explain","시아","수강생","순서를 ① ② ③으로 정리하고 실험 신호를 줍니다."],["moa","moa_tea","모아","수강생","현장 데이터를 떠올리고 기록을 모읍니다. 차를 챙겨요."],["x1","x1_hint","X1","수강생","‘흔한 오독’ 담당 ①. 일부러 틀리게 읽습니다."],["x2","x2_hint","X2","수강생","‘흔한 오독’ 담당 ②. 숫자를 성급히 믿습니다."],["x3","x3_hint","X3","수강생","‘흔한 오독’ 담당 ③. 상관을 인과로 읽곤 합니다."]]]
 ];
+$("#glegend").innerHTML=GROUPS.map(G=>`<a href="#ag${G.n}"><span class="dot" style="background:${GC[G.n]}"></span>${G.n} ${G.ko}</a>`).join("");
 $("#castgrid").innerHTML=CAST.map(([t,list])=>`<div class="castgroup">${t}</div><div class="castgrid">${list.map(c=>`<div class="castc" style="--cc:var(--c-${c[0].startsWith("x")?"x":c[0]})"><img src="${spr(c[1])}" alt="" aria-hidden="true"><div><b>${c[2]}</b><span class="role">${c[3]}</span><p>${c[4]}</p></div></div>`).join("")}</div>`).join("");
 $("#castrow").innerHTML=["doc_front","robo_coin","fly_point","asst_spark","sia_explain","moa_tea","x1_hint","x2_hint","x3_hint"].map(k=>`<img src="${spr(k)}" alt="">`).join("");
 
@@ -1587,6 +1970,7 @@ function acfPlot(g,W,H,a,n){const P=frame(g,W,H,{x0:0,x1:a.length+1,y0:-1,y1:1,x
 R.acf=(g,W,H)=>{const s=DATA.series,d=s.map((v,t)=>v-(100+0.8*t));acfPlot(g,W,H,acf(d,36),s.length);};
 
 function drawChart(cv,id){const o=setup(cv);R[id](o.g,o.w,o.h);}
+function drawAtlas(){$$("canvas.atl").forEach(cv=>drawChart(cv,cv.dataset.chart));}
 function drawCards(){$$("canvas.mini").forEach(cv=>{if(cv.offsetParent!==null)drawChart(cv,cv.dataset.chart);});}
 $$("details.card").forEach(d=>d.addEventListener("toggle",()=>requestAnimationFrame(()=>{const cv=d.querySelector("canvas.mini");drawChart(cv,cv.dataset.chart);})));
 
@@ -1798,7 +2182,7 @@ const MAP={};
 $$("[data-map]").forEach(a=>a.onclick=e=>{e.preventDefault();if(MAP.select)MAP.select(a.dataset.map);$("#map").scrollIntoView({behavior:reduce?"auto":"smooth"});});
 
 /* ---------- 첫 그리기 ---------- */
-function drawAll(){drawCards();drawExam();e1();e2();e3();e4();e5();e6();duel();}
+function drawAll(){drawAtlas();drawCards();drawExam();e1();e2();e3();e4();e5();e6();duel();}
 drawAll();openHash();
 let rt=null;window.addEventListener("resize",()=>{clearTimeout(rt);rt=setTimeout(drawAll,150);});
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(drawAll);

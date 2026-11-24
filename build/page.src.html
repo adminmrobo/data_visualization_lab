@@ -269,6 +269,51 @@ details.card[open]>summary{grid-template-columns:300px 1fr}
 .scene{margin:14px 0 18px;max-width:760px}
 .scene img{display:block;width:100%;height:auto;aspect-ratio:3/2;border-radius:12px;border:1px solid var(--rule);background:var(--panel)}
 .scene figcaption{font-size:13px;color:var(--muted);margin-top:4px}
+.jump{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0 4px}
+@media(max-width:760px){.jump{grid-template-columns:1fr}}
+.b3d{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:12px;background:#fff8e1;border:1px solid #f0d58a;text-decoration:none;color:var(--text)}
+.b3d.alt{background:#f4f8fe;border-color:#cddff5}
+.b3d i{font-style:normal;font-weight:700;background:var(--s4);color:#1b1f24;border-radius:8px;padding:6px 9px;font-size:14px;flex:none}
+.b3d.alt i{background:var(--s1);color:#fff}
+.b3d span{flex:1;min-width:0}.b3d b{display:block;font-size:15px}.b3d small{display:block;color:var(--muted);font-size:12.5px;line-height:1.5}
+.b3d em{font-style:normal;font-weight:700;font-size:13.5px;white-space:nowrap}
+.intro{display:grid;grid-template-columns:1.25fr 1fr;gap:14px;margin:6px 0 10px}
+@media(max-width:860px){.intro{grid-template-columns:1fr}}
+.intro .panel{margin:0}
+.intro h2{font-size:17px;margin:0 0 8px}
+.legendl{margin:0;padding-left:18px;font-size:14.5px;line-height:1.7}
+.legendl li{margin:3px 0}
+.glegend{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.glegend a{display:inline-flex;align-items:center;gap:6px;font-size:13px;text-decoration:none;color:var(--text);border:1px solid var(--rule);border-radius:999px;padding:2px 10px}
+.agroup{padding:36px 0 6px}
+.agroup h2{font-size:22px;margin:0;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.agroup h2 .hex{width:34px;height:38px;font-size:16px;margin:0}
+.agroup .gq{font-size:14.5px;color:var(--muted);font-weight:400}
+.agrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
+@media(max-width:960px){.agrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.agrid{grid-template-columns:1fr}}
+.acard{background:#fff;border:1px solid var(--rule);border-top:4px solid var(--gc);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;scroll-margin-top:90px}
+.acard .ah{display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.acard .ah b{font-size:16px;line-height:1.35}
+.acard .ah small{color:var(--muted);font-size:11.5px;text-align:right}
+.acard canvas{width:100%;height:170px;display:block;margin:8px 0;border:1px solid var(--panel2);border-radius:8px;background:#fff}
+.acard .aq{font-size:15px;font-weight:600;margin:0 0 6px;line-height:1.55}
+.acard .row{font-size:13.5px;line-height:1.6;margin:3px 0;color:var(--text)}
+.acard .row>b{display:inline-block;font-size:11.5px;color:var(--muted);min-width:44px;margin-right:4px}
+.acard .row.mis{background:#faf7ff;border-radius:6px;padding:4px 8px}
+.acard .row.mis s{color:var(--c-x);text-decoration:none}
+.acard .ctags{margin-top:6px}
+.acard .alinks{margin-top:auto;padding-top:10px;display:flex;gap:6px;flex-wrap:wrap}
+.acard .alinks a{font-size:13px;border:1px solid var(--rule);border-radius:7px;padding:3px 9px;text-decoration:none;color:var(--info)}
+.summary{margin:40px 0 10px}
+.summary h2{font-size:22px}
+.tbl{overflow-x:auto;border:1px solid var(--rule);border-radius:12px}
+.tbl table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:560px}
+.tbl th,.tbl td{border-bottom:1px solid var(--rule);padding:9px 12px;text-align:left;vertical-align:top}
+.tbl th{background:var(--panel);font-size:13.5px}
+.tbl tr:last-child td{border-bottom:0}
+.tbl td:first-child{font-weight:600;white-space:nowrap}
+@media(max-width:620px){.tbl td:first-child{white-space:normal}.tbl table{min-width:0;font-size:13.5px}.tbl th,.tbl td{padding:7px 8px}}
 footer{border-top:1px solid var(--rule);padding:28px 0 44px;color:var(--muted);font-size:14px;margin-top:40px}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 @media(max-width:520px){section.sec{padding:64px 0 32px}}
@@ -277,24 +322,23 @@ footer{border-top:1px solid var(--rule);padding:28px 0 44px;color:var(--muted);f
 <body>
 <nav class="top" aria-label="페이지 차례"><div class="row">
  <a class="logo" href="#top">시각화 차트 도감</a>
- <div class="links"><a href="#map">3D 지도</a><!--@@NAV@@--><a href="#duel">대결</a><a href="#exam">쪽지시험</a></div>
+ <div class="links"><a href="#atlas">한눈에</a><a href="#map">3D 지도</a><!--@@NAV@@--><a href="#duel">대결</a><a href="#exam">쪽지시험</a></div>
 </div></nav>
 
 <div class="wrap" id="top">
 <header class="hero" id="hero">
- <figure class="cover"><img src="images/cover_main.webp" width="1360" height="768" fetchpriority="high" alt="연구실 교실. 박사 선생님이 차트 아홉 개가 그려진 화면을 가리키고, 주판봇과 초파리 조교가 양옆에 서 있으며, 하루·시아·모아와 실루엣 수강생 셋이 책상에 앉아 있다."></figure>
- <div class="eyebrow">데이터 시각화 특집 · 연구실 수업</div>
- <h1>시각화 차트 도감</h1>
- <p class="lead">히스토그램부터 SHAP, 실루엣, 자기상관까지 데이터 분석에서 자주 만나는 차트 32장을 6교시로 나눠 배웁니다. 그림 모양을 외우기보다, 그림마다 <b>어떤 질문에 답하는지</b>와 <b>어떻게 잘못 읽기 쉬운지</b>를 먼저 봅니다.</p>
- <div class="byline">글 · 안상선 ((주)M-Robo 대표) · 자매편 <a href="https://adminmrobo.github.io/probability_distribution_dictionary/">확률분포 딕셔너리</a></div>
- <div class="castrow" id="castrow" aria-hidden="true"></div>
- <div class="kpis">
-  <div class="kpi"><b>32</b><span>차트 카드</span></div>
-  <div class="kpi"><b>6</b><span>교시 (질문의 종류)</span></div>
-  <div class="kpi"><b>32</b><span>함께 보는 짝 관계</span></div>
-  <div class="kpi"><b>3축</b><span>단계 · 데이터 · 질문 지도</span></div>
+ <div class="eyebrow">데이터 시각화 특집 · 연구실 수업 · 1편</div>
+ <h1>시각화 차트 32장, 한눈에 보기</h1>
+ <p class="lead">히스토그램부터 SHAP, 실루엣, 자기상관까지 데이터 분석에서 자주 만나는 차트 32장을 먼저 한 장씩 그려 보여 드립니다. 그림마다 <b>어떤 질문에 답하는지</b>, <b>어떻게 잘못 읽기 쉬운지</b>를 한 줄로 붙였습니다. 자세한 설명과 실험은 아래 연구실 수업(6교시)에서 이어집니다.</p>
+ <div class="byline">글 · 안상선 ((주)M-Robo 대표) · 2026-11-24 · 자매편 <a href="https://adminmrobo.github.io/probability_distribution_dictionary/">확률분포 딕셔너리</a></div>
+ <div class="jump">
+  <a class="b3d" href="#map"><i>3D</i><span><b>32장을 3D 관계 지도에서 돌려 보세요</b><small>가로 분석 단계 · 높이 데이터 종류 · 앞뒤 교시, 짝 그림 32쌍을 선으로</small></span><em>지도 열기 ↓</em></a>
+  <a class="b3d alt" href="#lesson"><i>수업</i><span><b>연구실 수업으로 자세히 배우기</b><small>6교시 · 실험 6개 · 대결 · 쪽지시험</small></span><em>수업 시작 ↓</em></a>
  </div>
- <div class="three" id="three">
+</header>
+
+<div class="intro">
+ <div class="three" id="three" style="margin:0">
   <b>처음 오신 분께 — 이 페이지를 3줄로</b>
   <ol>
    <li><b>무엇을</b>: 차트 32장이 각각 어떤 질문에 답하는지, 어떻게 읽고 어떻게 잘못 읽기 쉬운지 배웁니다.</li>
@@ -318,8 +362,58 @@ footer{border-top:1px solid var(--rule);padding:28px 0 44px;color:var(--muted);f
    <dt>ACF · PACF</dt><dd>자기상관 · 편자기상관</dd>
   </dl></details>
  </div>
+ <div class="panel">
+  <h2>카드 읽는 법</h2>
+  <ul class="legendl">
+   <li><b>그림</b> 정해진 난수로 만든 예시 데이터로 이 페이지가 직접 그렸습니다. 모양을 익히는 용도입니다.</li>
+   <li><b>질문</b> 이 차트가 답하는 질문 한 줄. 차트를 고를 때 이것부터 봅니다.</li>
+   <li><b>읽는 법</b> 무엇을 보면 되는지 한 줄.</li>
+   <li><b>흔한 오독</b> 수강생 X1~X3가 자주 틀리는 읽기와 바로잡기.</li>
+   <li><b>꼬리표</b> 분석 단계(탐색 · 확인·비교 · 모델링·평가 · 설명)와 다루는 데이터(연속값 · 범주·개수 · 시간 순서 · 모델 점수·예측).</li>
+  </ul>
+  <div class="glegend" id="glegend"></div>
+ </div>
+</div>
+
+<!--@@ATLAS@@-->
+
+<section class="summary" id="choose" aria-labelledby="h-choose">
+ <h2 id="h-choose">한눈에 고르기</h2>
+ <div class="tbl"><table>
+  <thead><tr><th>하고 싶은 일</th><th>먼저 볼 차트</th><th>이유</th></tr></thead>
+  <tbody>
+   <tr><td>값이 어떻게 퍼졌는지 보기</td><td><a href="#a-hist">히스토그램</a>, <a href="#a-box">상자그림</a></td><td>모양은 히스토그램, 여러 집단 비교는 상자그림이 빠르다.</td></tr>
+   <tr><td>정규분포를 따르는지 확인</td><td><a href="#a-qq">QQ 플롯</a></td><td>꼬리가 기준에서 벗어나는지가 한눈에 보인다.</td></tr>
+   <tr><td>“95%가 몇 초 안에?” 같은 기준 잡기</td><td><a href="#a-ecdf">누적분포 그림</a></td><td>백분위를 그림에서 바로 읽는다. 구간 수를 정할 필요가 없다.</td></tr>
+   <tr><td>두 숫자 변수의 관계</td><td><a href="#a-scatter">산점도</a> → <a href="#a-heat">상관 히트맵</a></td><td>모양을 먼저 보고 숫자(r)는 그다음. 변수가 많으면 히트맵.</td></tr>
+   <tr><td>두 범주(연령대·요금제)의 관련</td><td><a href="#a-cross">교차분석표·모자이크</a></td><td>개수가 아니라 비율을 비교하고, 카이제곱으로 우연인지 확인한다.</td></tr>
+   <tr><td>분류 모델 성능 보고</td><td><a href="#a-cm">혼동행렬</a> + <a href="#a-roc">ROC 곡선</a></td><td>실수의 종류와 기준선 전체의 구분력을 함께 보여 준다.</td></tr>
+   <tr><td>드문 사건(사기·고장) 탐지</td><td><a href="#a-pr">정밀도-재현율 곡선</a></td><td>양성이 드물면 ROC는 낙관적으로 보인다.</td></tr>
+   <tr><td>예측 확률을 그대로 쓰기</td><td><a href="#a-cal">보정 곡선</a></td><td>“70%”가 실제로 70%인지는 AUC가 말해 주지 않는다.</td></tr>
+   <tr><td>마케팅 대상 고르기</td><td><a href="#a-lift">리프트·이득 차트</a></td><td>상위 몇 %만 골라도 얼마나 잡는지 바로 보인다.</td></tr>
+   <tr><td>데이터를 더 모을까, 모델을 바꿀까</td><td><a href="#a-lc">학습 곡선</a>, <a href="#a-bv">편향-분산</a></td><td>두 선 사이가 넓으면 데이터, 함께 낮으면 모델이 문제다.</td></tr>
+   <tr><td>학습을 언제 멈출까</td><td><a href="#a-loss">손실 곡선</a></td><td>검증 손실이 다시 오르는 곳이 멈출 곳이다.</td></tr>
+   <tr><td>예측 이유 설명</td><td><a href="#a-shap">SHAP</a>, <a href="#a-pdp">PDP·ICE</a></td><td>변수가 예측을 민 방향·크기와 변수별 반응 곡선을 보여 준다.</td></tr>
+   <tr><td>고객을 몇 그룹으로 나눌까</td><td><a href="#a-elbow">엘보</a> + <a href="#a-sil">실루엣</a></td><td>두 기준이 같은 k를 가리키는지 확인한다.</td></tr>
+   <tr><td>계절 효과를 뺀 진짜 성장</td><td><a href="#a-decomp">시계열 분해</a>, <a href="#a-acf">ACF</a></td><td>추세와 계절을 떼어 보고, 주기는 자기상관으로 확인한다.</td></tr>
+  </tbody>
+ </table></div>
+</section>
+
+<section class="sec" id="lesson" aria-labelledby="h-lesson">
+ <figure class="cover"><img src="images/cover_main.webp" width="1360" height="768" loading="lazy" decoding="async" alt="연구실 교실. 박사 선생님이 차트 아홉 개가 그려진 화면을 가리키고, 주판봇과 초파리 조교가 양옆에 서 있으며, 하루·시아·모아와 실루엣 수강생 셋이 책상에 앉아 있다."></figure>
+ <div class="eyebrow">연구실 수업</div>
+ <h2 id="h-lesson">시각화 차트 도감 — 6교시 수업</h2>
+ <p class="lead">위에서 훑어본 32장을 이제 6교시로 나눠 배웁니다. 교시마다 박사 선생님의 현장 질문, 수식 한 번 풀어 보기, 직접 만져 보는 실험, 차트 카드, 확인 퀴즈가 이어집니다.</p>
+ <div class="castrow" id="castrow" aria-hidden="true"></div>
+ <div class="kpis">
+  <div class="kpi"><b>32</b><span>차트 카드</span></div>
+  <div class="kpi"><b>6</b><span>교시 (질문의 종류)</span></div>
+  <div class="kpi"><b>32</b><span>함께 보는 짝 관계</span></div>
+  <div class="kpi"><b>3축</b><span>단계 · 데이터 · 질문 지도</span></div>
+ </div>
  <div data-dlg="hero"></div>
-</header>
+</section>
 
 <section class="sec" id="cast" aria-labelledby="h-cast">
  <h2 id="h-cast">오늘의 교실</h2>

@@ -39,6 +39,7 @@ const CAST=[
  ["조교",[["robo","robo_calc","주판봇","조교","계산과 코드 담당. 큰 숫자를 보면 서두르는 버릇이 있어, 일부러 성급한 결론을 내고 함께 고칩니다."],["fly","fly_point","초파리","조교","눈과 감각 담당. 3D 지도를 날아다니며 짝 그림을 이어 주고, 늘 ‘정말?’이라고 묻습니다."]]],
  ["수강생",[["asst","asst_smile","하루","수강생","평소엔 조수지만 오늘은 수강생. 수식이 나오면 대신 묻고, 교시 끝 세 줄 정리를 맡습니다."],["sia","sia_explain","시아","수강생","순서를 ① ② ③으로 정리하고 실험 신호를 줍니다."],["moa","moa_tea","모아","수강생","현장 데이터를 떠올리고 기록을 모읍니다. 차를 챙겨요."],["x1","x1_hint","X1","수강생","‘흔한 오독’ 담당 ①. 일부러 틀리게 읽습니다."],["x2","x2_hint","X2","수강생","‘흔한 오독’ 담당 ②. 숫자를 성급히 믿습니다."],["x3","x3_hint","X3","수강생","‘흔한 오독’ 담당 ③. 상관을 인과로 읽곤 합니다."]]]
 ];
+$("#glegend").innerHTML=GROUPS.map(G=>`<a href="#ag${G.n}"><span class="dot" style="background:${GC[G.n]}"></span>${G.n} ${G.ko}</a>`).join("");
 $("#castgrid").innerHTML=CAST.map(([t,list])=>`<div class="castgroup">${t}</div><div class="castgrid">${list.map(c=>`<div class="castc" style="--cc:var(--c-${c[0].startsWith("x")?"x":c[0]})"><img src="${spr(c[1])}" alt="" aria-hidden="true"><div><b>${c[2]}</b><span class="role">${c[3]}</span><p>${c[4]}</p></div></div>`).join("")}</div>`).join("");
 $("#castrow").innerHTML=["doc_front","robo_coin","fly_point","asst_spark","sia_explain","moa_tea","x1_hint","x2_hint","x3_hint"].map(k=>`<img src="${spr(k)}" alt="">`).join("");
 
@@ -187,6 +188,7 @@ function acfPlot(g,W,H,a,n){const P=frame(g,W,H,{x0:0,x1:a.length+1,y0:-1,y1:1,x
 R.acf=(g,W,H)=>{const s=DATA.series,d=s.map((v,t)=>v-(100+0.8*t));acfPlot(g,W,H,acf(d,36),s.length);};
 
 function drawChart(cv,id){const o=setup(cv);R[id](o.g,o.w,o.h);}
+function drawAtlas(){$$("canvas.atl").forEach(cv=>drawChart(cv,cv.dataset.chart));}
 function drawCards(){$$("canvas.mini").forEach(cv=>{if(cv.offsetParent!==null)drawChart(cv,cv.dataset.chart);});}
 $$("details.card").forEach(d=>d.addEventListener("toggle",()=>requestAnimationFrame(()=>{const cv=d.querySelector("canvas.mini");drawChart(cv,cv.dataset.chart);})));
 
@@ -398,7 +400,7 @@ const MAP={};
 $$("[data-map]").forEach(a=>a.onclick=e=>{e.preventDefault();if(MAP.select)MAP.select(a.dataset.map);$("#map").scrollIntoView({behavior:reduce?"auto":"smooth"});});
 
 /* ---------- 첫 그리기 ---------- */
-function drawAll(){drawCards();drawExam();e1();e2();e3();e4();e5();e6();duel();}
+function drawAll(){drawAtlas();drawCards();drawExam();e1();e2();e3();e4();e5();e6();duel();}
 drawAll();openHash();
 let rt=null;window.addEventListener("resize",()=>{clearTimeout(rt);rt=setTimeout(drawAll,150);});
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(drawAll);
